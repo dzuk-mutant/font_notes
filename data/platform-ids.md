@@ -19,7 +19,7 @@ Here are the different ones as well as the recommended/default values.
 The use of this is discouraged by Apple. So we're not using it.
 
 ##### Microsoft (Platform ID 3)
-- Language ID 0x0809 (for UK English) < needs to be variable, hexadecimal
+- Language ID 0x0809 (for US English) < needs to be variable, hexadecimal
 - Platform Specific ID 1 (for Unicode BMP)
 
 ### They need to be consistent across the font
