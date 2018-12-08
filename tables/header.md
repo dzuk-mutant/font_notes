@@ -2,17 +2,7 @@
 
 - https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6head.html
 
-The font needs a header table, which generally contains information like:
-
-The header table contains global information about the font, like:
-
-- font version number
-- creation and modification dates
-- revision number
-- basic typographic that applies to the entire font
-- specification of the font bounding box
-- likely writing direction
-- other information about how the font's glyphs are placed in the square.
+The header table contains basic, global information about the font.
 
 
 ### Header types

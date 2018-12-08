@@ -1,6 +1,6 @@
 # Vertical Metrics
 
-The font's vertical metrics, like the horizontal metrics, are stated in two different tables.
+The font's header and metrics for vertical writing orientation. Very similar to the header and metrics for horizontal writing orientation.
 
 ### `vhea` Vertical Header
 

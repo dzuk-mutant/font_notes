@@ -65,7 +65,7 @@ I still need to learn more about font metrics and make assumptions based on thos
 - [`maxp`](tables/maxp.md) maximum profile: defines the memory requirements for the font.
 - [`OS/2`](tables/os_2.md) - Windows and OpenType-specific metadata and metrics.
 
-
+`vhea` and `vmtx` aren't *technically* required, but it would be kind of ignorant and Anglocentric of us not to do them.
 
 #### 2. [`cmap`](tables/cmap.md)
 

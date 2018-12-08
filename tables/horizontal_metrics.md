@@ -1,6 +1,6 @@
 # Horizontal Metrics
 
-The font's horizontal metrics, like the vertical metrics, are stated in two different tables.
+The font's header and metrics for horizontal writing orientation. Very similar to the header and metrics for vertical writing orientation.
 
 
 ### `hhea` Horizontal Header
