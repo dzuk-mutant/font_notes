@@ -41,12 +41,14 @@ Luckily because we're just doing emoji, there's not too much we have to store, b
 This guide assumes the data types and tables are identical unless explicitly stated otherwise.
 
 
-### sfnt wrapper
+-------
 
-**This needs to be analysed and written about.**
+## Data
 
-- https://docs.microsoft.com/en-gb/typography/opentype/spec/otff#organization-of-an-opentype-font
-- https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6.html#Directory (under 'The Font Directory')
+### [sfnt wrapper](data/sfnt.md)
+
+The data format, and the wrapper for all of the tables.
+
 
 ### The tables!
 
@@ -96,6 +98,11 @@ Information for PostScript printers.
 ## Recurring data
 
 #### [Platform IDs](data/platform-ids.md)
+
+## Font Metrics
+
+- What the hell *is* an FUnit exactly?
+- How bounding boxes, ascenders and descenders work (in context to emoji)
 
 -----
 
