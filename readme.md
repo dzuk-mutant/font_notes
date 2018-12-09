@@ -95,14 +95,12 @@ Human-readable metadata.
 Information for PostScript printers.
 
 
-## Recurring data
+## Recurring elements
 
-#### [Platform IDs](data/platform-ids.md)
+##### [Platform IDs](data/platform-ids.md)
 
-## Font Metrics
+##### [Font Metrics](data/metrics.md)
 
-- What the hell *is* an FUnit exactly?
-- How bounding boxes, ascenders and descenders work (in context to emoji)
 
 -----
 

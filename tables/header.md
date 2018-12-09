@@ -58,20 +58,20 @@ Either in `head` or `bhed`, it's the same:
 
 ##### flags
 
-| bit |    |
-|---:|:---|
-| 0 | y value of 0 specifies baseline (?) |
-| 1 | x position of left most black bit is LSB (?) |
-| 2 | scaled point size and actual point size will differ (i.e. 24 point glyph differs from 12 point glyph scaled by factor of 2) |
-| 3 | use integer scaling instead of fractional |
-| 4 | (used by the Microsoft implementation of the TrueType scaler) |
-| 5 | This bit should be set in fonts that are intended to e laid out vertically, and in which the glyphs have been drawn such that an x-coordinate of 0 corresponds to the desired vertical baseline. |
-| 6 | Set to 0. (Just because the documentation said so.) |
-| 7 | This bit should be set if the font requires layout for correct linguistic rendering (e.g. Arabic fonts). |
-| 8 | Set to 0. (This is for AAT fonts.) |
-| 9 | This bit should be set if the font contains any strong right-to-left glyphs. |
-| 10 | Set to 0. |
-| 11 | Set to 0. (Defined by Adobe.) |
-| 12 | Set to 0. (Defined by Adobe.) |
-| 13 | Set to 0. (Defined by Adobe.) |
-| 14 | This bit should be set if the glyphs in the font are simply generic symbols for code point ranges, such as for a last resort font.
+| bit | important? |  desc  |
+|---:|:---:|:-----|
+| **0** | y? | y value of 0 specifies baseline (?) |
+| **1** | y? | x position of left most black bit is LSB (?) |
+| **2** | y? | scaled point size and actual point size will differ (i.e. 24 point glyph differs from 12 point glyph scaled by factor of 2) |
+| **3** | y? | use integer scaling instead of fractional |
+| **4** | y? | (used by the Microsoft implementation of the TrueType scaler) |
+| **5** | y? | This bit should be set in fonts that are intended to e laid out vertically, and in which the glyphs have been drawn such that an x-coordinate of 0 corresponds to the desired vertical baseline. |
+| 6 |  |Set to 0. (Just because the documentation said so.) |
+| **7** | n? | This bit should be set if the font requires layout for correct linguistic rendering (e.g. Arabic fonts). |
+| 8 |  | Set to 0. (This is for AAT fonts.) |
+| 9 |  | Set to 0. (This bit should be set if the font contains any strong right-to-left glyphs.) |
+| 10 |  | Set to 0. |
+| 11 |  | Set to 0. (Defined by Adobe.) |
+| 12 |  | Set to 0. (Defined by Adobe.) |
+| 13 |  | Set to 0. (Defined by Adobe.) |
+| 14 | n? |This bit should be set if the glyphs in the font are simply generic symbols for code point ranges, such as for a last resort font.

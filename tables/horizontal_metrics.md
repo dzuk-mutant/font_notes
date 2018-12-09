@@ -23,8 +23,8 @@ A lot of this seems very unimportant because we're just interested in emoji. But
 | FWord | **minLeftSideBearing** | Minimum left sidebearing value in the `hmtx` table. [2] |
 | FWord | **maxRightSideBearing** | Minimum right sidebearing value in the `hmtx` table. Calculated as `Min(advanceWidth - lsb - (xMax - xMin)` [2] |
 | FWord | **xMaxExtent** | 	`max(lsb + (xMax-xMin))` (whatever that means) [2] |
-| Int16 | caretSlopeRise | See Apple's documentation on this. It's probably not that important what it's set to. |
-| Int16 | caretSlopeRun | See Apple's documentation on this. It's probably not that important what it's set to. |
+| Int16 | caretSlopeRise | Try 1. |
+| Int16 | caretSlopeRun | Try 0.  |
 | Int16 | caretOffset | set to 0 |
 | Int16 | reserved |  set to 0 |
 | Int16 | reserved |  set to 0 |

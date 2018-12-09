@@ -26,8 +26,8 @@ The ascender, descender and linegap don't seem to be Apple-exclusive this time.*
 | Int16 | **minTopSideBearing** | Minimum top sidebearing measurement in the font, in FUnits. Must be consistent with entries in `vmtx`.  |
 | Int16 | **maxBottomSideBearing** | Minimum bottom sidebearing measurement in the font, in FUnits. Must be consistent with entries in `vmtx`. [2] |
 | Int16 | **yMaxExtent** | 	`max(topSideBearing + (yMax-yMin))` (whatever that means) [2] |
-| Int16 | caretSlopeRise | See Apple's documentation on this. It's probably not that important what it's set to. |
-| Int16 | caretSlopeRun | See Apple's documentation on this. It's probably not that important what it's set to. |
+| Int16 | caretSlopeRise | Try 1. |
+| Int16 | caretSlopeRun | Try 0. |
 | Int16 | caretOffset | set to 0 |
 | Int16 | reserved |  set to 0 |
 | Int16 | reserved |  set to 0 |

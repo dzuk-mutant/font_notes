@@ -15,7 +15,7 @@ This is only relevant to OpenType as far as I know, but TrueType fonts can have 
 
 | Type | Name | Description |
 |:-----|:-----|:------------|
-| UInt16 | version | set to 0x0005 |
+| UInt16 | version | set to 0x0005. |
 | Int16 | **xAvgCharWidth** | The arithmetic average of the width of all non-zero width glyphs in the font in font design units. It's pretty easy for us because all emoji aare the same width anyway. |
 | UInt16 | usWeightClass | Set to 500. |
 | UInt16 | usWidthClass | Set to 5. |
@@ -61,7 +61,7 @@ All of these values are in font design units.
 | UInt16 | **usWinDescent** | "Windows Descender". Specifies the height below the baseline for a clipping region. Similar to `sTypoDescender` above and `descender` in [`hhea`](horizontal_metrics.md), but has important differences. [Look at Microsoft's spec for more information](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#uswindescent). |
 | UInt32 | **ulCodePageRange1** | Like `ulUnicodeRange` above, but for 'Code Pages'. [Look at Microsoft's spec for more information](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#ulcodepagerange1-bits-031brulcodepagerange2-bits-3263). |
 | UInt32 | **ulCodePageRange2** | Continuation of the above. |
-| Int16 | **sxHeight** | The approximate distance between the baseline and the top of non-asccending lowercase letters. Measured in FUnits. Not relevant for us but we have to put something valid in it. |
+| Int16 | **sxHeight** | The approximate distance between the baseline and the top of non-ascending lowercase letters. Measured in FUnits. Not relevant for us but we have to put something valid in it. |
 | Int16 | **sCapHeight** | The approximate distance between the baseline and the top of uppercase letters. Measured in FUnits. Not relevant for us but we have to put something valid in it. |
 | UInt16 | **usDefaultChar** | UTF-16 encoded codepoint of a character that can be your font's default glyph. If it's 0, glyph ID 0 will be the default character (which will be .notdef) |
 | UInt16 | **usBreakChar** | Default break. Make it U+0020 (Space). |
