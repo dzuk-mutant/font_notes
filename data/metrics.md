@@ -74,8 +74,6 @@ These basically tell Windows where to vertically crop the bitmap rendering of th
 - [Information on `usWinAscent ` and it's difference to `sTypoAscender ` and `ascender `.](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#uswinascent)
 - [Information on `usWinDescent` and it's difference to `sTypoDescender` and `descender`.](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#uswindescent)
 
-**How do you even do ascenders and descenders for an emoji?**
-
 ----
 
 ## Bearings
