@@ -90,7 +90,6 @@ Human-readable metadata.
 
 #### 6. [`post`](tables/post.md)
 
-**Yet to be written.**
 
 Information for PostScript printers.
 
