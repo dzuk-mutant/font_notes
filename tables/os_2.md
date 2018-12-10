@@ -16,7 +16,7 @@ This is only relevant to OpenType as far as I know, but TrueType fonts can have 
 | Type | Name | Description |
 |:-----|:-----|:------------|
 | UInt16 | version | set to 0x0005. |
-| Int16 | **xAvgCharWidth** | The arithmetic average of the width of all non-zero width glyphs in the font in font design units. It's pretty easy for us because all emoji aare the same width anyway. |
+| Int16 | **xAvgCharWidth** | The arithmetic average of the width of all non-zero width glyphs in the font in font design units. It's pretty easy for us because all emoji are the same width anyway. |
 | UInt16 | usWeightClass | Set to 500. |
 | UInt16 | usWidthClass | Set to 5. |
 | UInt16 | **fsType** | A series of bytes indicating embedding licensing rights.[ More information can be found here](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#fstype). |
