@@ -23,11 +23,18 @@ An em is a simply a relative unit that's equal to the currently-specified point 
 
 The space container that every character is situated within.
 
-The contents of the Em Square are divided by the number of FUnits you're using.
+The contents of the Em Square are divided by the number of FUnits you're using, as declared by `unitsPerEm` in [`head`/`bhed`](../tables/header.md).
 
 It's preferable to do it in a power of 2, it's typically 1024 or 2048 FUnits. scfbuild uses 2048.
 
+Keep in mind that unlike the days of printing presses, 
+
+1. The Em square is imaginary; you don't *really* get to define it.
+2. The Em square is more of an idea than a constraint; glyphs can be larger than the Em square if you find it convenient to make it that way. It's your choice.
+
 - [The Em Square on Design With FontForge](http://designwithfontforge.com/en-US/The_EM_Square.html)
+- [FUnits and the Em Square](https://docs.microsoft.com/en-us/typography/opentype/spec/ttch01#funits-and-the-em-square)
+- [EM Square, Ascent and Descent Values on Fontlab Forums](https://forum.fontlab.com/font-formats-and-opentype/em-square-ascent-and-descent-values/)
 
 ----
 
@@ -46,6 +53,7 @@ In any case, ours will be representing a square.
 
 **I'm guessing this isn't the Em Square???**
 
+
 ----
 
 ## Ascenders and Descenders
@@ -62,9 +70,11 @@ In any case, ours will be representing a square.
 
 Apple, OS/2 and Windows ascenders and descenders are similar but not the same.
 
+- http://www.myfirstfont.com/glossary.html
+
 #### Basic ascenders and descenders
 
-These are what they are. If you're doing CJK characters (or like emoji presumably), then you want to define these in terms of the ['ideographic em-box'](https://docs.microsoft.com/en-gb/typography/opentype/spec/baselinetags#ideoembox) to ensure clean vertical rendering.
+These are what they are. If you're doing CJK characters (or like emoji presumably), then you will possibly want to define these in terms of the ['ideographic em-box'](https://docs.microsoft.com/en-gb/typography/opentype/spec/baselinetags#ideoembox) to ensure clean vertical rendering.
 
 
 #### usWin ascenders and descenders
@@ -144,5 +154,8 @@ I'm not sure what this is but for our purposes, I think it's just fine to set Ri
 - `xAvgCharWidth` in [`OS/2`](../tables/os_2.md)
 - `sxHeight ` in [`OS/2`](../tables/os_2.md)
 - `sCapHeight ` in [`OS/2`](../tables/os_2.md)
+- `lowestRecPPEM` in [`head`/`bhed`](../tables/header.md)
+
+`lowestRecPPEM` is the lowest recommended size for the font, in pixels.
 
 ??????
