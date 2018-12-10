@@ -117,5 +117,5 @@ You should always encode these.
 | 0 | ????   | .notdef / Unknown Glyph |
 | 1 | ????   | Null |
 | 2 | ?????   | Carriage Return |
-| 3 | 0x20   | Space |
+| 3 | 0x0020   | Space |
 
