@@ -64,7 +64,7 @@ Apple, OS/2 and Windows ascenders and descenders are similar but not the same.
 
 #### Basic ascenders and descenders
 
-These are what they are. If you're doing CJK characters (or like emoji), then you want to define these in terms of the ['ideographic em-box'](https://docs.microsoft.com/en-gb/typography/opentype/spec/baselinetags#ideoembox) to ensure clean vertical rendering.
+These are what they are. If you're doing CJK characters (or like emoji presumably), then you want to define these in terms of the ['ideographic em-box'](https://docs.microsoft.com/en-gb/typography/opentype/spec/baselinetags#ideoembox) to ensure clean vertical rendering.
 
 
 #### usWin ascenders and descenders
