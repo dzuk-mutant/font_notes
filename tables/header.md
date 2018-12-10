@@ -51,7 +51,7 @@ Either in `head` or `bhed`, it's the same:
 | int16 | indexToLocFormat | 0 for short offsets (16), 1 for long (32). IDK what this is? |
 | int16 | glyphDataFormat | 0 for current format |
 
-1. Apple: "To compute: set it to 0, calculate the checksum for the 'head' table and put it in the table directory, sum the entire font as a uint32_t, then store 0xB1B0AFBA - sum. (The checksum for the 'head' table will be wrong as a result. That is OK; do not reset it.)"
+1. [Microsoft](https://docs.microsoft.com/en-gb/typography/opentype/spec/head): "To compute: set it to 0, sum the entire font as uint32, then store 0xB1B0AFBA - sum. If the font is used as a component in a font collection file, the value of this field will be invalidated by changes to the file structure and font table directory, and must be ignored."
 1. The date format is the number of seconds from 12:00 midnight on January 1st 1904 in GMT/UTC time zone as a 64-bit integer.
 2. We're gonna create a square bounding box.
 
