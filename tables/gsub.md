@@ -170,9 +170,11 @@ One feature index value (and only one) can be tagged as `ReqFeatureIndex`. This 
 
 ## FeatureList
 
-Features are what they are. `FeatureList`'s structure is very similar to `ScriptList` - List, then Record, then a Tag accompanied by the actual thing.
+`FeatureList`'s structure is very similar to `ScriptList` - List, then Record, then a Tag accompanied by the actual thing.
 
-Unlike ScriptList, we are actually going to use a feature, the feature being character composition/decomposition, and that feature will be pointing to a lookup table, that being a table of ligatures.
+Unlike ScriptList, I think we  are actually going to use a feature, the feature being character composition/decomposition, and that feature will be pointing to a lookup table, that being a table of ligatures.
+
+**I'll have to do more research to be sure about it, and also figure out what *should* be here.**
 
 ```
 TTX
@@ -292,7 +294,7 @@ TTX
 
 #### Lookup subtables
 
-We are using [LookupType 4 for Ligature Substitution](https://docs.microsoft.com/en-gb/typography/opentype/spec/gsub#LS).
+We are using [LookupType 4 Format 1 for Ligature Substitution](https://docs.microsoft.com/en-gb/typography/opentype/spec/gsub#LS).
 
 ````
 TTX
@@ -306,7 +308,7 @@ TTX
 
 | Type | Name | Description |
 |:--|:--|:--|
-| UInt16 | **substFormat** | Number of lookups!!!@ |
+| UInt16 | substFormat | **Set to 1.** |
 | Offset16 | **coverageOffset** | Offset to Coverage table, from beginning of this table. |
 | UInt16 | **ligatureSetCount** | How many `LigatureSet` tables are in this `Lookup`. |
 | Offset16 | **ligatureSetOffsets[]** | Offsets to subtables. Starting from the beginning of this table. |
