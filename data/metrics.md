@@ -54,34 +54,39 @@ In any case, ours will be representing a square.
 
 ----
 
-## Ascenders and Descenders
+## Ascenders, Descenders, Caps height and x-height
 
-##### Relevant data points:
+- https://docs.microsoft.com/en-us/typography/opentype/spec/ttch01#funits-and-the-em-square
+- http://www.myfirstfont.com/glossary.html
+
+
+#### Basic ascenders and descenders
+
 - `ascender` (Apple ascender) in [`hhea`](../tables/horizontal_metrics.md).
 - `descender` (Apple descender) in [`hhea`](../tables/horizontal_metrics.md).
 - `vertTypoAscender` in [`vhea`](../tables/vertical_metrics.md).
 - `vertTypoDescender` in [`vhea`](../tables/vertical_metrics.md).
 - `sTypoAscender ` (OS/2 ascender) in [`OS/2`](../tables/os_2.md).
 - `sTypoDescender ` (OS/2 descender) in [`OS/2`](../tables/os_2.md).
-- `usWinAscent ` (Windows ascender) in [`OS/2`](../tables/os_2.md).
-- `usWinDescent ` (Windows descender) in [`OS/2`](../tables/os_2.md).
-
-Apple, OS/2 and Windows ascenders and descenders are similar but not the same.
-
-- https://docs.microsoft.com/en-us/typography/opentype/spec/ttch01#funits-and-the-em-square
-- http://www.myfirstfont.com/glossary.html
-
-#### Basic ascenders and descenders
 
 These are what they are. If you're doing CJK characters (or like emoji presumably), then you will possibly want to define these in terms of the ['ideographic em-box'](https://docs.microsoft.com/en-gb/typography/opentype/spec/baselinetags#ideoembox) to ensure clean vertical rendering.
 
 
 #### usWin ascenders and descenders
 
+- `usWinAscent ` (Windows ascender) in [`OS/2`](../tables/os_2.md).
+- `usWinDescent ` (Windows descender) in [`OS/2`](../tables/os_2.md).
+
 These basically tell Windows where to vertically crop the bitmap rendering of the glyphs according to where the ascenders and descenders are. If any cropping is unacceptable, set them to greater than or equal to yMax for `usWinAscender` and (-yMin) for `usWinDescender`.
 
 - [Information on `usWinAscent ` and it's difference to `sTypoAscender ` and `ascender `.](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#uswinascent)
 - [Information on `usWinDescent` and it's difference to `sTypoDescender` and `descender`.](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#uswindescent)
+
+#### Caps height and x-height
+
+- `sxHeight ` in [`OS/2`](../tables/os_2.md)
+- `sCapHeight ` in [`OS/2`](../tables/os_2.md)
+
 
 ----
 
@@ -151,8 +156,6 @@ I'm not sure what this is but for our purposes, I think it's just fine to set Ri
 ## Other
 
 - `xAvgCharWidth` in [`OS/2`](../tables/os_2.md)
-- `sxHeight ` in [`OS/2`](../tables/os_2.md)
-- `sCapHeight ` in [`OS/2`](../tables/os_2.md)
 - `lowestRecPPEM` in [`head`/`bhed`](../tables/header.md)
 
 `lowestRecPPEM` is the lowest recommended size for the font, in pixels.
