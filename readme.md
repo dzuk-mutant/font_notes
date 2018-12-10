@@ -163,7 +163,7 @@ TABLES
 
 
 
-### CBDT/CBLC (Google)
+### CBx (CBDT/CBLC) (Google)
 Stores glyphs as PNGs at multiple resolutions.
 
 - TrueType - ttf extension
@@ -192,7 +192,7 @@ TABLES
 ```
 
 
-### COLR/CPAL (Microsoft)
+### Cx (COLR/CPAL) (Microsoft)
 Stores glyphs as multiple layers of vector graphics (COLR) that are given colour palettes (CPAL).
 
 This is only useful for Windows 8. [Windows 10 has support for all of the above emoji formats.](https://docs.microsoft.com/en-gb/windows/desktop/DirectWrite/what-s-new-in-directwrite-for-windows-8-consumer-preview#what_s_new_for_windows_10_anniversary_update)

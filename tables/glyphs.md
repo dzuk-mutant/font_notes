@@ -22,14 +22,14 @@ You should ignore `pdf` and `mask` data types. Probably `dupe` as well.
 - TrueType - ttf extension
 - [sbix table in Apple TrueType Reference Manual](https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6sbix.html)
 
-#### CBDT/CBLC
+#### CBx (CBDT/CBLC)
 Stores glyphs as PNGs at multiple resolutions.
 
 - TrueType - ttf extension
-- [CBDT table in Microsoft OpenType spec](https://docs.microsoft.com/en-gb/typography/opentype/spec/sbix)
+- [CBDT table in Microsoft OpenType spec](https://docs.microsoft.com/en-gb/typography/opentype/spec/cbdt)
 - [CBLC table in Microsoft OpenType spec](https://docs.microsoft.com/en-gb/typography/opentype/spec/cblc)
 
-#### COLR/CPAL
+#### Cx (COLR/CPAL)
 Stores glyphs as multiple layers of vector graphics (COLR) that are given colour palettes (CPAL).
 
 - OpenType - otf extension
