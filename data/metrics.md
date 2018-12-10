@@ -69,7 +69,7 @@ These are what they are. If you're doing CJK characters (or like emoji presumabl
 
 #### usWin ascenders and descenders
 
-These basically tell Windows where to vertically crop the bitmap rendering of the glyphs according to ascenders. If any cropping is unacceptable, set them to greater than equal to yMax.
+These basically tell Windows where to vertically crop the bitmap rendering of the glyphs according to where the ascenders and descenders are. If any cropping is unacceptable, set them to greater than equal to yMax.
 
 - [Information on `usWinAscent ` and it's difference to `sTypoAscender ` and `ascender `.](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#uswinascent)
 - [Information on `usWinDescent` and it's difference to `sTypoDescender` and `descender`.](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#uswindescent)
