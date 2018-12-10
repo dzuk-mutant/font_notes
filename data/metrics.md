@@ -26,10 +26,9 @@ The contents of the Em Square are divided by the number of FUnits you're using, 
 
 It's preferable to do it in a power of 2, it's typically 1024 or 2048 FUnits. scfbuild uses 2048.
 
-Keep in mind that unlike the days of printing presses, 
+Keep in mind that unlike the days of printing presses, the Em square is more of an idea than a constraint; glyphs can be larger than the Em square if you find it convenient to make it that way. It's your choice.
 
-1. The Em square is imaginary; you don't *really* get to define it.
-2. The Em square is more of an idea than a constraint; glyphs can be larger than the Em square if you find it convenient to make it that way. It's your choice.
+**It's unclear how the Em Square is defined in any other location than `unitsPerEm`.**
 
 - [The Em Square on Design With FontForge](http://designwithfontforge.com/en-US/The_EM_Square.html)
 - [FUnits and the Em Square](https://docs.microsoft.com/en-us/typography/opentype/spec/ttch01#funits-and-the-em-square)
