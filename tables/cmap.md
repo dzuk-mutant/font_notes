@@ -106,10 +106,16 @@ I need to do more research on this
 
 ---
 
-## Other things!
+## Mandatory/Conventional Glyphs
 
-- Glyph 0 in a subtable must be assigned to a `.notdef` glyph.
-(https://docs.microsoft.com/en-gb/typography/opentype/spec/recom#glyph-0-the-notdef-glyph)
- - You also need a space (U+0020) encoded. Not just because you need it, but other default parts of this font guide/data structure also require a space.
+You should always encode these.
 
-There might be one or two more that need to be added here.
+- https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=IWS-Chapter08
+
+| Glyph ID    | Codepoint     | Desc      |
+|:--------|:---------|:----------|
+| 0 | .notdef   | Unknown Glyph |
+| 1 | ????   | Null |
+| 2 | ?????   | Carriage Return |
+| 3 | 0x20   | Space |
+
