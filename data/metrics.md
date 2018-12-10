@@ -1,6 +1,5 @@
 ## Measurements and jargon
 
-- http://www.myfirstfont.com/glossary.html
 
 ### FUnit
 
@@ -70,6 +69,7 @@ In any case, ours will be representing a square.
 
 Apple, OS/2 and Windows ascenders and descenders are similar but not the same.
 
+- https://docs.microsoft.com/en-us/typography/opentype/spec/ttch01#funits-and-the-em-square
 - http://www.myfirstfont.com/glossary.html
 
 #### Basic ascenders and descenders
