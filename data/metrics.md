@@ -1,5 +1,7 @@
 ## Measurements and jargon
 
+- http://www.myfirstfont.com/glossary.html
+
 ### FUnit
 
 Font design unit, or FUnit, is the arbitrary measurement system which describes where the points of a font are plotted.
@@ -89,13 +91,19 @@ Apple, OS/2 and Windows ascenders and descenders are similar but not the same.
 ###### links
 
 - https://ilovetypography.com/typography-terms/typography-terms-s/
+- http://www.myfirstfont.com/glossary.html
 
+##### Term explanations
 
+###### Bearings
 Bearings basically tell the glyphs if they can push in or out of each others' bounding boxes.
 
 Because this is an emoji font, they can all be set to something uniform.
 
 **What should they be set to?**
+
+##### Advance width/height
+Advance height and advance width are the size of the font after bearings have been added.
 
 
 ----
@@ -105,8 +113,8 @@ Because this is an emoji font, they can all be set to something uniform.
 ##### Relevant data points:
 - `caretSlopeRise` in [`hhea`](../tables/horizontal_metrics.md).
 - `caretSlopeRun` in [`hhea`](../tables/horizontal_metrics.md).
-- `caretSlopeRise` in [`vhea`](../tables/horizontal_metrics.md).
-- `caretSlopeRun` in [`vhea`](../tables/horizontal_metrics.md).
+- `caretSlopeRise` in [`vhea`](../tables/vertical_metrics.md).
+- `caretSlopeRun` in [`vhea`](../tables/vertical_metrics.md).
 
 I'm not sure what this is but for our purposes, I think it's just fine to set Rise to 1 and Run to 0.
 
