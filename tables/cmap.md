@@ -114,7 +114,7 @@ You should always encode these.
 
 | Glyph ID    | Codepoint     | Desc      |
 |:--------|:---------|:----------|
-| 0 | .notdef   | Unknown Glyph |
+| 0 | ????   | .notdef / Unknown Glyph |
 | 1 | ????   | Null |
 | 2 | ?????   | Carriage Return |
 | 3 | 0x20   | Space |
