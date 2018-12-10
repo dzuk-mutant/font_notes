@@ -158,6 +158,7 @@ I'm not sure what this is but for our purposes, I think it's just fine to set Ri
 - `xAvgCharWidth` in [`OS/2`](../tables/os_2.md)
 - `lowestRecPPEM` in [`head`/`bhed`](../tables/header.md)
 
+`xAvgCharWidth` is the arithmetic average width of all non-zero width glyph in the font in FUnits. This is pretty easy for us, because all emoji have the same width.
 `lowestRecPPEM` is the lowest recommended size for the font, in pixels. For Mutant Standard, that would be 16 or 18px.
 
 ??????
