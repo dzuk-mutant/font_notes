@@ -67,6 +67,6 @@ All of these values are in font design units.
 | UInt16 | **usBreakChar** | Default break. Make it U+0020 (Space). |
 | UInt16 | **usMaxContent** | The maximum length of a target glyph context for any feature in this font. For our purposes, that means the length of the biggest ligature. |
 | UInt16 | usLowerOpticalPointSize | It's for fonts that have multiple optical styles. Not useful for us, so set to 0. |
-| UInt16 | usLowerOpticalPointSize | It's for fonts that have multiple optical styles. Not useful for us, so set to 0. |
+| UInt16 | usUpperOpticalPointSize | It's for fonts that have multiple optical styles. Not useful for us, so set to 0. |
 
 

@@ -71,13 +71,15 @@ In any case, ours will be representing a square.
 
 These are what they are. If you're doing CJK characters (or like emoji presumably), then you will possibly want to define these in terms of the ['ideographic em-box'](https://docs.microsoft.com/en-gb/typography/opentype/spec/baselinetags#ideoembox) to ensure clean vertical rendering.
 
+It seems like it's best to set the descender to your `yMin` and your ascender to `yMax`.
+
 
 #### usWin ascenders and descenders
 
 - `usWinAscent ` (Windows ascender) in [`OS/2`](../tables/os_2.md).
 - `usWinDescent ` (Windows descender) in [`OS/2`](../tables/os_2.md).
 
-These basically tell Windows where to vertically crop the bitmap rendering of the glyphs according to where the ascenders and descenders are. If any cropping is unacceptable, set them to greater than or equal to yMax for `usWinAscender` and (-yMin) for `usWinDescender`.
+These basically tell Windows where to vertically crop the bitmap rendering of the glyphs according to where the ascenders and descenders are. If any cropping is unacceptable, set them to greater than or equal to yMax for `usWinAscender` and (-yMin) for `usWinDescender`. It seems like you should definitely do that.
 
 - [Information on `usWinAscent ` and it's difference to `sTypoAscender ` and `ascender `.](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#uswinascent)
 - [Information on `usWinDescent` and it's difference to `sTypoDescender` and `descender`.](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#uswindescent)
@@ -87,6 +89,7 @@ These basically tell Windows where to vertically crop the bitmap rendering of th
 - `sxHeight ` in [`OS/2`](../tables/os_2.md)
 - `sCapHeight ` in [`OS/2`](../tables/os_2.md)
 
+It seems like you should try setting `sxHeight` to the same as `yMin` and `sCapHeight` to the same as `sCapHeight`.
 
 ----
 
@@ -119,12 +122,12 @@ These basically tell Windows where to vertically crop the bitmap rendering of th
 ###### Bearings
 Bearings basically tell the glyphs if they can push in or out of each others' bounding boxes.
 
-Because this is an emoji font, they can all be set to something uniform.
-
-**What should they be set to?**
+It seems like for monospaced fonts, these should just be 0.
 
 ##### Advance width/height
 Advance height and advance width are the size of the font after bearings have been added.
+
+It seems like for monospaced fonts, these should just be the width that you've decided to set all of the glyphs to.
 
 
 ----
@@ -148,8 +151,20 @@ I'm not sure what this is but for our purposes, I think it's just fine to set Ri
 - `vertTypoLineGap ` in [`vhea`](../tables/vertical_metrics.md).
 - `sTypoLineGap ` (OS/2 line gap) in [`OS/2`](../tables/os_2.md).
 
-??????
+It seems like you should/could just set these to 0 for emoji.
 
+---
+
+## Underline and Strikeout
+
+- `underlinePosition` in [`post`](../tables/post.md).
+- `underlineThickness` in [`post`](../tables/post.md).
+- `yStrikeoutSize` in [`OS/2`](../tables/os_2.md).
+- `yStrikeoutPosition` in [`OS/2`](../tables/os_2.md).
+
+These are things you'll have to decide for yourself based on what you think looks good for the font.
+
+`underlineThickness` and `yStrikeoutSize` should match each other.
 
 ---
 
@@ -158,7 +173,7 @@ I'm not sure what this is but for our purposes, I think it's just fine to set Ri
 - `xAvgCharWidth` in [`OS/2`](../tables/os_2.md)
 - `lowestRecPPEM` in [`head`/`bhed`](../tables/header.md)
 
-`xAvgCharWidth` is the arithmetic average width of all non-zero width glyph in the font in FUnits. This is pretty easy for us, because all emoji have the same width.
+`xAvgCharWidth` is the arithmetic average width of all non-zero width glyph in the font in FUnits. This is a monospaced font, so it's just the same width as all the other widths.
+
 `lowestRecPPEM` is the lowest recommended size for the font, in pixels. For Mutant Standard, that would be 16 or 18px.
 
-??????

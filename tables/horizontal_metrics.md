@@ -14,8 +14,8 @@ A lot of this seems very unimportant because we're just interested in emoji. But
 
 | Type | Name | Description |
 |:-----|:-----|:------------|
-| UInt16| majorVersion | Meaningless, set it to 1. Only shown in the OpenType documentation. |
-| UInt16| minorVersion | Meaningless, set it to 0. Only shown in the OpenType documentation. |
+| UInt16| majorVersion | Set it to 1. Only shown in the OpenType documentation. |
+| UInt16| minorVersion | Set it to 0. Only shown in the OpenType documentation. |
 | FWord | **ascender**  | Apple's typographic ascent. It's the distance the highest ascender from the baseline.[1] |
 | FWord | **descender** | Apple's typographic descent. It's the distance the lowest descender from the baseline.[1] |
 | FWord | **lineGap** | Apple's line gap. |
@@ -58,9 +58,13 @@ As far as I can tell, there isn't much that actually needs to be entered here, b
 | longHorMetric | **hMetrics[number of  hMetrics]** | Pairs of advance width and left side bearing values for each glyh. Records are indexed by glyph ID. |
 | Int16 | **leftSideBearings[ number of glyphs - number of hMetrics]** | Left side bearings for glyph IDs greater than or equal to the number of hMetrics. |
 
+
+
 ##### A single `longHorMetric` Record:
 
 | Type | Name | Description |
 |:-----|:-----|:------------|
-| UInt16 | **advanceWidth** | Advance width. In font design units (???) |
-| Int16 | **lsb** | Left side bearing of the glyph. In font design units (???) |
+| UInt16 | **advanceWidth** | Advance width. In FUnits. |
+| Int16 | **lsb** | Left side bearing of the glyph. In FUnits. |
+
+Width should just be the width you've decided to set your glyphs at. LSB should probably be 0.

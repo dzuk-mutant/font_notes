@@ -19,8 +19,8 @@ The ascender, descender and linegap don't seem to be Apple-exclusive this time.*
 | Type | Name | Description |
 |:-----|:-----|:------------|
 | Fixed | version | Meaningless, set it to 0x00010000. |
-| Int16 | **vertTypoAscender**  | Distance in FUnits (???) from the centerline to the previous line's descent. |
-| Int16 | **vertTypoDescender** | Distance in FUnits (???) from the centerline to the next line's ascent. |
+| Int16 | **vertTypoAscender**  | Distance in FUnits from the centerline to the previous line's descent. |
+| Int16 | **vertTypoDescender** | Distance in FUnits from the centerline to the next line's ascent. |
 | Int16 | **vertTypoLineGap** | Apple's line gap. |
 | Int16 | **advanceHeightMax** | Maximum advance height measurement in FUnits. Must be consistent with entries in `vmtx`. |
 | Int16 | **minTopSideBearing** | Minimum top sidebearing measurement in the font, in FUnits. Must be consistent with entries in `vmtx`.  |
