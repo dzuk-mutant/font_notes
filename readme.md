@@ -58,7 +58,7 @@ You can encode them in whatever order, but [Microsoft has a list of what works b
 `loca` is typically expected in a TTF font, but because our TTF fonts will have no TTF contours/outlines, this table shouldn't be necessary.
 
 
-#### 1. metrics and technical metadata
+### 1. metrics and technical metadata
 
 I still need to learn more about font metrics and make assumptions based on those. (Because most if not all of the metrics for an emoji font, given the project's assumptions, should be the same.)
 
@@ -73,14 +73,23 @@ These tables often do the same thing as each other, just in slightly different w
 
 `vhea` and `vmtx` aren't *technically* required, but it would be kind of ignorant and Anglocentric of us not to do them.
 
-#### 2. glyph and ligature mapping
+### 2. glyph and ligature mapping
 
 - [`cmap`](tables/cmap.md) - **Still needs more writing and disambiguation. I'm not really done here!**
 - [`GSUB`](tables/gsub.md) - **in progress.** Unclear if this is only applicable to OpenType fonts or not.
 
 #### 3. [glyph data](tables/glyphs.md)
 
-The data about the glyphs themselves.
+This is where the meat of the font is. This is where the graphical information is stored.
+
+How they are encoded is the basis for what we consider the format of the font is - so a font with sbix glyph tables is an sbix format font, a font with SVG glyph tables is an SVGinOT font, and so on.
+
+Depending on the format, the visual information may be stored solely in one table (SVG, sbix), or two tables working together (CBDT/CBLC, COLR/CPAL).
+
+- [`SVG`](tables/svg.md): SVGinOT
+- [`sbix`](tables/sbix.md): Apple
+- [`CBx`](tables/cbx.md): CBDT/CBLC - Google
+- [`Cx`](tables/cx.md): COLR/CPAL - Will look into later if we see the point in doing it.
 
 
 #### 4. [`name`](tables/name.md)
@@ -90,11 +99,11 @@ Human-readable metadata.
 
 
 
-## Recurring elements
+### Recurring elements
 
-##### [Platform IDs](data/platform-ids.md)
+#### [Platform IDs](data/platform-ids.md)
 
-##### [Font Metrics](data/metrics.md)
+#### [Font Metrics](data/metrics.md)
 
 
 -----
@@ -104,9 +113,16 @@ Human-readable metadata.
 
 ### SVGinOT (Mozilla, Adobe)
 
-Stores SVG images in glyphs.
+The most supported and the most ideal format. Other formats have to be done for old OS support, however.
 
-- OpenType - otf extension
+- Windows 10 (Creators Update)
+- macOS 10.14+
+- iOS 12+?
+- Various Linux distros
+- Firefox 50+
+
+
+**OpenType - otf extension**
 
 ```
 TABLES
@@ -130,9 +146,13 @@ TABLES
 ```
 
 ### sbix (Apple)
+
 Stores glyphs as raster images rendered at multiple resolutions that's picked dynamically based on DPI and font size. These images can be a variety of formats (PNG, JPG, TIFF, etc.).
 
-- TrueType - ttf extension
+- macOS 10.7+
+- iOS 2.2+
+
+**TrueType - ttf extension**
 
 
 ```
@@ -162,7 +182,10 @@ TABLES
 ### CBx (CBDT/CBLC) (Google)
 Stores glyphs as PNGs at multiple resolutions.
 
-- TrueType - ttf extension
+- Android 4.4+?
+- Chrome OS (what version?)
+
+**TrueType - ttf extension**
 
 ```
 TABLES
@@ -193,7 +216,7 @@ Stores glyphs as multiple layers of vector graphics (COLR) that are given colour
 
 This is only useful for Windows 8. [Windows 10 has support for all of the above emoji formats.](https://docs.microsoft.com/en-gb/windows/desktop/DirectWrite/what-s-new-in-directwrite-for-windows-8-consumer-preview#what_s_new_for_windows_10_anniversary_update)
 
-- OpenType - otf extension
+**OpenType - otf extension**
 
 
 
