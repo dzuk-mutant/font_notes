@@ -14,7 +14,7 @@ TTX
 
 <cmap>
 	<tableVersion version="0"/>
-	<cmap_format_12 platformID="0" platEncID="10" format="12" reserved="0" length="?"  nGroups="?">
+	<cmap_format_12 platformID="0" platEncID="10" language="0" format="12" reserved="0" length="?"  nGroups="?">
 		<map code="0x0" name=".notdef"/><!-- .notdef -->
 		<map code="0xd" name="CR"/><!-- Carriage Return -->
 		<map code="0x20" name="space"/><!-- Space -->
@@ -22,7 +22,8 @@ TTX
 		<map ... />
 		<map ... />
 		<map ... />
-		....		
+		....
+	</cmap_format_12>
 				    	
 	<cmap_format_12 platformID="3" platEncID="1" language="0x0809" format="12" reserved="0" length="?"  nGroups="?">
 		<map code="0x0" name=".notdef"/><!-- .notdef -->
@@ -33,18 +34,21 @@ TTX
 		<map ... />
 		<map ... />
 		....
+	</cmap_format_12>
 		
 	<cmap_format_14 platformID="0" platEncID="10" format="14" length="?" numVarSelectorRecords="?">
       <map uvs="0xfe0f" uv="[some codepoint]" name="None"/>
       <map uvs="0xfe0f" uv="[some codepoint]" name="None"/>
       <map uvs="0xfe0f" uv="[some codepoint]" name="None"/>
       ....
+     </cmap_format_14>
       
    <cmap_format_14 platformID="3" platEncID="1" language="0x0809" format="14" length="?" numVarSelectorRecords="?">
       <map uvs="0xfe0f" uv="[some codepoint]" name="None"/>
       <map uvs="0xfe0f" uv="[some codepoint]" name="None"/>
       <map uvs="0xfe0f" uv="[some codepoint]" name="None"/>
       ....
+     </cmap_format_14>
       
       
 </cmap>

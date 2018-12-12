@@ -78,7 +78,7 @@ These tables often do the same thing as each other, just in slightly different w
 - [`cmap`](tables/cmap.md) - **Still needs more writing and disambiguation. I'm not really done here!**
 - [`GSUB`](tables/gsub.md) - **in progress.** Unclear if this is only applicable to OpenType fonts or not.
 
-#### 3. [glyph data](tables/glyphs.md)
+### 3. glyph data
 
 This is where the meat of the font is. This is where the graphical information is stored.
 
@@ -92,7 +92,7 @@ Depending on the format, the visual information may be stored solely in one tabl
 - [`Cx`](tables/cx.md): COLR/CPAL - Will look into later if we see the point in doing it.
 
 
-#### 4. [`name`](tables/name.md)
+### 4. [`name`](tables/name.md)
 
 Human-readable metadata.
 

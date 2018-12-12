@@ -18,7 +18,7 @@ TTX basic structure
 
 <SVG>
 	<version value="0"/>
-	<svgDoc>
+	<svgDoc startGlyphID="[ID]" endGlyphID="[ID]">
 	  <![CDATA[<?xml version='1.0' encoding='UTF-8'?>
 		<svg>
 		
