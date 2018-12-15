@@ -116,6 +116,7 @@ It seems like you should try setting `sxHeight` to the same as `yMin` and `sCapH
 
 - https://ilovetypography.com/typography-terms/typography-terms-s/
 - http://www.myfirstfont.com/glossary.html
+- https://www.freetype.org/freetype2/docs/glyphs/glyphs-3.html
 
 ##### Term explanations
 
