@@ -34,6 +34,18 @@ Keep in mind that unlike the days of printing presses, the Em square is more of 
 - [FUnits and the Em Square](https://docs.microsoft.com/en-us/typography/opentype/spec/ttch01#funits-and-the-em-square)
 - [EM Square, Ascent and Descent Values on Fontlab Forums](https://forum.fontlab.com/font-formats-and-opentype/em-square-ascent-and-descent-values/)
 
+
+### PPEM
+
+Pixels Per Em.
+
+**This is typically set to equal to the point size on a 72 PPI device. (ie. a traditional density desktop display)
+**
+
+This is often expressed horizontally and vertically separate, but you are going to want to lock those together because we are always going to assume square pixels here.
+
+
+
 ----
 
 ## Bounding Boxes
@@ -98,25 +110,55 @@ It seems like you should try setting `sxHeight` to the same as `yMin` and `sCapH
 ##### Relevant data points:
 
 ###### Horizontal
-- `advanceWidthMax` in [`hhea` and `hmtx`](../tables/horizontal_metrics.md).
-- `minLeftSideBearing` in [`hhea` and `hmtx`](../tables/horizontal_metrics.md).
-- `maxRightSideBearing` in [`hhea`](../tables/horizontal_metrics.md).
-- `xMaxExtent` in [`hhea`](../tables/horizontal_metrics.md).
+
+[`hhea`](../tables/horizontal_metrics.md)
+
+- `advanceWidthMax`
+- `minLeftSideBearing`
+- `maxRightSideBearing`
+- `xMaxExtent`
+
+[`hmtx`](../tables/horizontal_metrics.md)
+
+- `leftSideBearings[]`
+- `advanceWidth`
+- `lsb`
+
+[`CBDT`](../tables/CBx.md)
+
+- `horiBearingX`
+- `horiBearingY`
+- `horiAdvance`
 
 ###### Vertical
-- `advanceHeightMax` in [`vhea`](../tables/vertical_metrics.md).
-- `minTopSideBearing` in [`vhea`](../tables/vertical_metrics.md).
-- `maxBottomSideBearing` in [`vhea`](../tables/vertical_metrics.md).
-- `yMaxExtent` in [`vhea`](../tables/vertical_metrics.md).
-- `advanceHeight` in [`vmtx`](../tables/vertical_metrics.md).
-- `topSideBearing` in [`vmtx`](../tables/vertical_metrics.md).
-- `topSideBearing[]` in [`vmtx`](../tables/vertical_metrics.md).
+
+[`vhea`](../tables/vertical_metrics.md)
+
+- `advanceHeightMax`
+- `minTopSideBearing`
+- `maxBottomSideBearing`
+- `yMaxExtent`
+
+[`vmtx`](../tables/vertical_metrics.md)
+
+- `topSideBearing[]`
+- `advanceHeight`
+- `topSideBearing`
+
+
+[`CBDT`](../tables/CBx.md)
+
+- `vertBearingX`
+- `vertBearingY`
+- `vertAdvance`
 
 ###### links
 
 - https://ilovetypography.com/typography-terms/typography-terms-s/
 - http://www.myfirstfont.com/glossary.html
 - https://www.freetype.org/freetype2/docs/glyphs/glyphs-3.html
+- [useful diagram of CBx metrics from Microsoft](https://docs.microsoft.com/en-us/typography/opentype/spec/eblc#bitmap-flags)
+- [and another one](https://docs.microsoft.com/en-us/typography/opentype/spec/eblc#smallglyphmetrics)
 
 ##### Term explanations
 
@@ -166,6 +208,21 @@ It seems like you should/could just set these to 0 for emoji.
 These are things you'll have to decide for yourself based on what you think looks good for the font.
 
 `underlineThickness` and `yStrikeoutSize` should match each other.
+
+---
+
+## Display Density
+
+#####`sbix` strike header
+
+- ppem
+- ppi
+
+##### CBLC strikes
+
+- `ppemX`
+- `ppemY`
+
 
 ---
 

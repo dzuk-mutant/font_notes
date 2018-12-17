@@ -60,22 +60,24 @@ Either in `head` or `bhed`, it's the same:
 
 **In an OpenType font, all TrueType flags must be set to 0 and vice versa.**
 
+**Remember that TTX arranges this in the order they are encoded in bytes (Big-endian), so reverse your typing order.**
+
 | bit | important? | format | desc  |
 |---:|:---:|:-----|:-----|
-| **0** | y? | all | If the baseline for the font is at y=0. |
-| **1** | y? | all |x position of left most black bit is LSB (?) |
-| **2** | y? | all |scaled point size and actual point size will differ (i.e. 24 point glyph differs from 12 point glyph scaled by factor of 2) |
-| **3** | y? | all |use integer scaling instead of fractional |
-| **4** | y? | all |(used by the Microsoft implementation of the TrueType scaler) |
-| **5** | y? | **TrueType** |This bit should be set in fonts that are intended to e laid out vertically, and in which the glyphs have been drawn such that an x-coordinate of 0 corresponds to the desired vertical baseline. |
-| 6 |  | **TrueType** |Set to 0. (Just because the documentation said so.) |
+| **0** | y? | all | If the baseline for the font is at y=0. **Set to 1. **|
+| **1** | y? | all |x position of left most black bit is LSB (?). **Try 1.** |
+| **2** | y? | all |scaled point size and actual point size will differ (i.e. 24 point glyph differs from 12 point glyph scaled by factor of 2). **Set to 0.**  |
+| **3** | y? | all | Use integer scaling instead of fractional. **Try 1.** |
+| **4** | y? | all |(used by the Microsoft implementation of the TrueType scaler) **Set to 0.** |
+| **5** | y? | **TrueType** |This bit should be set in fonts that are intended to be laid out vertically, and in which the glyphs have been drawn such that an x-coordinate of 0 corresponds to the desired vertical baseline. **Try 1.** |
+| 6 |  | **TrueType** | **Set to 0.** (Just because the documentation said so.) |
 | **7** | n? | **TrueType** | This bit should be set if the font requires layout for correct linguistic rendering (e.g. Arabic fonts). |
-| 8 |  | **TrueType** | Set to 0. (This is for AAT fonts.) |
-| 9 |  | **TrueType** | Set to 0. (This bit should be set if the font contains any strong right-to-left glyphs.) |
-| 10 |  | **TrueType** | Set to 0. |
+| 8 |  | **TrueType** | **Set to 0.** (This is for AAT fonts.) |
+| 9 |  | **TrueType** | **Set to 0.** (This bit should be set if the font contains any strong right-to-left glyphs.) |
+| 10 |  | **TrueType** | **Set to 0.** |
 | 11 |  | **OpenType** | Set to 1 if this font is compressed in a way that binary compatibility between input and output isn't guaranteed (like WOFF). **Set to 0.** |
 | 12 |  | **OpenType** | If this font has been converted? **Set to 0.** |
 | 13 |  | **OpenType** | This font has been optimised for ClearType. It should always be 0 if the font relies on bitmaps. **We don't care about ClearType so set it to 0.** |
 | 14 | | all | "Last Resort font". This bit should be set if the glyphs in `cmap` are simply generic code point ranges and not actually indicative of all the glyps in the font. **Set it to 0.**
-| 15 | | all | Reserved. Set to 0. |
+| 15 | | all | Reserved. **Set to 0.** |
 

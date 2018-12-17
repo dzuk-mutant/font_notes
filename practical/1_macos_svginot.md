@@ -1,14 +1,15 @@
-# macOS validation
+# macOS SVGinOT validation
 
 How to make the font render as valid and display colour emoji characters in macOS.
 
-#### SVGinOT
+**Keep in mind that SVGinOT support in macOS is very recent (it seems like it was introduced in 10.14).**
+
 
 
 ##### `glyf` table.
 - Has to have a `glyf` table.
-- TTX stipulates that `glyf` table must have characters that represent everything declared in `cmap`.
-- All of your emoji glyphs have to *also* have monochromatic `<TTGlyph>` glyph data. If they don't, the SVG will not display.
+- TTX stipulates that `glyf` table must have characters that represent everything declared in `cmap`. They can all be empty, however.
+- macOS at least wants one glyph in `glyf` that isn't empty. It doesn't matter what it is.
 
 ##### use svgcleaner beforehand
 Your SVG images have to be run through svgcleaner in order to be valid for SVGinOT (Affinity Designer puts in a lot of invalid things, notably styles).

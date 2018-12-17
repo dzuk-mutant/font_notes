@@ -108,6 +108,23 @@ Human-readable metadata.
 
 -----
 
+## Current practical notes
+
+What I've found out while making fonts.
+
+1. [macOS SVGinOT validation](practical/1_macos_svginot.md)
+2. [SVGinOT metrics problems](practical/2_svginot_problems.md)
+
+
+---
+
+## Todo
+
+- Refine metrics used. (There should be some descending, your use of vertical metrics is totally off)
+- I don't understand what PPEM is. (Used in `sbix` strikes)
+
+-----
+
 
 ## Formats
 
