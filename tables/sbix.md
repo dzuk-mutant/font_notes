@@ -32,9 +32,15 @@ Basically, we just need the base stuff, both for compatibility reasons, and just
 
 ### Dependencies
 
+Unlike `CBDT/CBLC`, which requires you to restate layout variables over again in their own tables, `sbix` simply requires that you state them in the tables that were already designed to facilitate this. 
+
+So yes, these are dependencies, but it's way better than what `CBDT/CBLC` does. =_='
+
+...here are the dependencies!
+
 - `maxp` to infer glyph count
-- `hmtx` for horizontal layout
-- `vmtx` for vertical layout
+- `hhea/hmtx` for horizontal layout
+- `vhea/vmtx` for vertical layout
 
 ### Combination sbix and CBx
 
@@ -43,6 +49,8 @@ It seems possible to combine sbix and CBx formats into the same font, if you poi
 (CBx uses the CBLC to point to bitmap data, and the CBDT table to store it.)
 
 This isn't possible in TTX though, because TTX automatically calculates offsets.
+
+### Structure!
 
 ```
 TTX

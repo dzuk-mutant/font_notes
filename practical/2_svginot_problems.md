@@ -13,7 +13,9 @@ Getting SVGinOT metrics to actually work.
 
 ## SVGinOT renderers don't like `viewbox` attributes.
 
-SVGinOT renderers don't like the viewbox attribute and will render it incorrectly in a variety of ways (in macOS, it's by treating the coordinates of the viewbox as mapped onto font coordinates (whose Y-axis points in the reverse direction).
+SVGinOT renderers don't like the viewbox attribute and will render it incorrectly in a variety of ways.
+
+In macOS, this means all SVG glyphs appear 1em below where they should be. In other software environments, people have reported various other sizing and alignment errors.
 
 This problem (and the fix that I have used) is mentioned here:
 
@@ -33,4 +35,4 @@ In Mutant Standard's case, the `<g>` would be `<g transform="translate(0,-2048) 
 ![](_images/2_fixed.png)
 
 
-now the metrics just need to be refined!
+now the metrics just need to be refined by throwing in a little below-baseline positioning!
