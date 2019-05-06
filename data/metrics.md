@@ -1,7 +1,7 @@
-## Measurements and jargon
+# Measurements and jargon
 
 
-### FUnit
+## FUnits
 
 Font design unit, or FUnit, is the arbitrary measurement system which describes where the points of a font are plotted.
 
@@ -10,6 +10,9 @@ The FUnit is the smallest measurable unit in the Em Square.
 - [FUnits and the em square](https://docs.microsoft.com/en-us/typography/opentype/spec/ttch01#funits-and-the-em-square)
 - [Converting FUnits to pixels](https://docs.microsoft.com/en-us/typography/opentype/spec/ttch01#converting-funits-to-pixels)
 
+----
+
+## Em and the Em Square
 
 ### Em
 
@@ -22,7 +25,7 @@ An em is a simply a relative unit that's equal to the currently-specified point 
 
 The space container that every character is situated within.
 
-The contents of the Em Square are divided by the number of FUnits you're using, as declared by `unitsPerEm` in [`head`/`bhed`](../tables/header.md).
+The contents of the Em Square are divided by the number of FUnits you're using, as declared by `unitsPerEm` in [`head`/`bhed`](../tables/head.md).
 
 It's preferable to do it in a power of 2, it's typically 1024 or 2048 FUnits. scfbuild uses 2048.
 
@@ -35,14 +38,39 @@ Keep in mind that unlike the days of printing presses, the Em square is more of 
 - [EM Square, Ascent and Descent Values on Fontlab Forums](https://forum.fontlab.com/font-formats-and-opentype/em-square-ascent-and-descent-values/)
 
 
+---
+
+## PPEM and PPI
+
+- [`sbix.<strike>.ppem`](../tables/sbix.md)
+- [`sbix.<strike>.ppi`](../tables/sbix.md)
+- [`CBLC.<BitmapSize>.ppemX`](../tables/cbx.md)
+- [`CBLC.<BitmapSize>.ppemY`](../tables/cbx.md)
+
 ### PPEM
 
 Pixels Per Em.
 
-**This is typically set to equal to the point size on a 72 PPI device. (ie. a traditional density desktop display)
-**
+PPEM is used by bitmap glyph tables (ie. `sbix`, `CBDT/CBLC`) to establish the resolution of bitmap glyphs relative to the Em Square (described above).
 
-This is often expressed horizontally and vertically separate, but you are going to want to lock those together because we are always going to assume square pixels here.
+`sbix` represents this as a single value for both axes. `CBLC` represents this as two values for each axis.
+
+### PPI
+
+Pixels Per Inch.
+
+PPI is a standard measure of pixel density in displays. PPI is used by `sbix` to understand what pixel density a strike was designed for.
+
+### How to use them both (?)
+
+Treat PPEM as if it was on a 72 PPI device and treat PPEM as square.
+
+- Set `sbix.<strike>.ppi` to 72 for all strikes.
+- Set your PPEMs the same as their standard resolution for all axes. If the size of images in a strike is 128px, the PPEM is 128. If it's 64px then the PPEM is 64, and so on.
+
+**I think that's how PPEM should be set????**
+
+
 
 
 
@@ -50,10 +78,10 @@ This is often expressed horizontally and vertically separate, but you are going 
 
 ## Bounding Boxes
 
-- `xMin` in [`head`/`bhed`](../tables/header.md)
-- `yMin` in [`head`/`bhed`](../tables/header.md)
-- `xMax` in [`head`/`bhed`](../tables/header.md)
-- `yMax` in [`head`/`bhed`](../tables/header.md)
+- `xMin` in [`head`/`bhed`](../tables/head.md)
+- `yMin` in [`head`/`bhed`](../tables/head.md)
+- `xMax` in [`head`/`bhed`](../tables/head.md)
+- `yMax` in [`head`/`bhed`](../tables/head.md)
 
 A bounding box that is set around all glyphs in the font. In a normal font situation, this is calculated by looking at all contour/outline data for the glyphs.
 
@@ -200,10 +228,10 @@ It seems like you should/could just set these to 0 for emoji.
 
 ## Underline and Strikeout
 
-- `underlinePosition` in [`post`](../tables/post.md).
-- `underlineThickness` in [`post`](../tables/post.md).
-- `yStrikeoutSize` in [`OS/2`](../tables/os_2.md).
-- `yStrikeoutPosition` in [`OS/2`](../tables/os_2.md).
+- [`post.underlinePosition`](../tables/post.md).
+- [`post.underlineThickness`](../tables/post.md)
+- [`OS/2.yStrikeoutSize`](../tables/os_2.md)
+- [`OS/2.yStrikeoutPosition`](../tables/os_2.md)
 
 These are things you'll have to decide for yourself based on what you think looks good for the font.
 
@@ -229,7 +257,7 @@ These are things you'll have to decide for yourself based on what you think look
 ## Other
 
 - `xAvgCharWidth` in [`OS/2`](../tables/os_2.md)
-- `lowestRecPPEM` in [`head`/`bhed`](../tables/header.md)
+- `lowestRecPPEM` in [`head`/`bhed`](../tables/head.md)
 
 `xAvgCharWidth` is the arithmetic average width of all non-zero width glyph in the font in FUnits. This is a monospaced font, so it's just the same width as all the other widths.
 

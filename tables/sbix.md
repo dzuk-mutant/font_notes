@@ -5,8 +5,6 @@ sbix (Standard Bitmap Graphics Table) stores glyphs as raster images rendered at
 For our purposes (emoji), PNG is the only adequate and necessary format.
 
 
-
-
 - [sbix table in Apple TrueType Reference Manual](https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6sbix.html)
 
 
@@ -15,6 +13,10 @@ This was originally a proprietary part of TrueType designed for Apple's emoji. I
 
 sbix is functionally similar to CBDT/CBLC, but instead of putting information in two tables and being horribly, needlessly complex, sbix just does it in one.
 
+
+#### Differences between other bitmap table formats
+
+[See here.](../misc/bitmap_table_differences.md)
 
 
 ### Compatibility
@@ -34,7 +36,7 @@ Basically, we just need the base stuff, both for compatibility reasons, and just
 
 Unlike `CBDT/CBLC`, which requires you to restate layout variables over again in their own tables, `sbix` simply requires that you state them in the tables that were already designed to facilitate this. 
 
-So yes, these are dependencies, but it's way better than what `CBDT/CBLC` does. =_='
+So yes, these are dependencies, but it's way better than what `CBDT/CBLC` does because you need these tables anyway to make a functioning font.
 
 ...here are the dependencies!
 
@@ -44,11 +46,9 @@ So yes, these are dependencies, but it's way better than what `CBDT/CBLC` does. 
 
 ### Combination sbix and CBx
 
-It seems possible to combine sbix and CBx formats into the same font, if you point their table data both to the same glyph bitmap data sources.
+It seems possible to combine sbix and CBx formats into the same font, if you point their table data (in sbix and CBDT) both to the same glyph bitmap data sources in one of these tables.
 
-(CBx uses the CBLC to point to bitmap data, and the CBDT table to store it.)
-
-This isn't possible in TTX though, because TTX automatically calculates offsets.
+This isn't possible if you're using TTX though, because TTX automatically calculates offsets.
 
 ### Structure!
 
@@ -61,7 +61,7 @@ TTX
 	<flags value="00000000 00000001"/> <!-- big endian -->
 	
 	<strike>
-		<ppem value="150"/>
+		<ppem value="128"/>
 		<resolution value="72"/>
 		
 		<glyph name=".notdef"/>
@@ -114,7 +114,7 @@ Strikes consist of two parts:
 ### Strike Header
 |Type |	Name |	Description |
 |:--|:--|:--|
-| UInt16 | **ppem** | The PPEM size this strike was designed for. |
+| UInt16 | **ppem** | The PPEM size this strike was designed for. [Refer to this document](../data/metrics.md) to understand what PPEM is and how to use it. |
 | UInt16 | **ppi** | The PPI this strike was designed for. |
 | Offset32 | **glyphDataOffsets[numGlyphs+1]** | Offset for the bitmap data for an individual glyph ID. Starts from the beginning of this strike header. |
 

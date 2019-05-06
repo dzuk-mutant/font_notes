@@ -238,14 +238,31 @@ Microsoft says that by using [`ccmp`](https://docs.microsoft.com/en-gb/typograph
 TTX
 
 <LookupList>
+
   <Lookup index="0">
-    <LookupType value=" ? "/>
-    <LookupFlag value=" ? "/>
+    <LookupType value="4"/>
+    <LookupFlag value="0"/>
     <LigatureSubst index="0" Format="1">
-		<LigatureSet>...</LigatureSet>
+    
+		<LigatureSet glyph="u1f4aa">
+			<Ligature components="u1f3fb" glyph="u1f4aa-1f3fb"/>
+			<Ligature components="u1f3fc" glyph="u1f4aa-1f3fc"/>
+			<Ligature components="u1f3fd" glyph="u1f4aa-1f3fd"/>
+			<Ligature components="u1f3fe" glyph="u1f4aa-1f3fe"/>
+			<Ligature components="u1f3ff" glyph="u1f4aa-1f3ff"/>
+			<Ligature components="u101600" glyph="u1f4aa-101600"/>
+			...
+			<Ligature components="u101650,u101600" glyph="u1f4aa-101650-101600"/>
+			<Ligature components="u101650,u101601" glyph="u1f4aa-101650-101601"/>
+			<Ligature components="u101650,u101602" glyph="u1f4aa-101650-101602"/>
+			...
+		</LigatureSet>
 		...
     </LigatureSubst>
+    
   </Lookup>
+  ...
+  
 </LookupList
 
 ````
@@ -270,12 +287,14 @@ TTX
 
 #### Lookup itself
 
+We are using [LookupType 4 Format 1](https://docs.microsoft.com/en-gb/typography/opentype/spec/gsub#LS), which means Ligature Substitution.
+
 ````
 TTX
 
 <Lookup index="0">
-	<LookupType value=" ? "/>
-	<LookupFlag value=" ? "/>
+	<LookupType value="4"/>
+	<LookupFlag value="0"/>
 	    
 	[Lookup subtables]
 	    
@@ -285,8 +304,8 @@ TTX
 
 | Type | Name | Description |
 |:--|:--|:--|
-| UInt16 | **lookupType** | Number of lookups!!!@ |
-| UInt16 | **lookupFlag** | Lookup qualifiers **?????** |
+| UInt16 | **lookupType** | What type of Lookup subtables this Lookup has (**in our case, it's type 4**). |
+| UInt16 | **lookupFlag** | **Set to 0.** |
 | UInt16 | **subTableCount** | How many subtables are in this `Lookup`. |
 | Offset16 | **subtableOffsets[]** | Offsets to subtables. Starting from the beginning of this table. |
 
@@ -294,7 +313,7 @@ TTX
 
 #### Lookup subtables
 
-We are using [LookupType 4 Format 1 for Ligature Substitution](https://docs.microsoft.com/en-gb/typography/opentype/spec/gsub#LS).
+
 
 ````
 TTX
@@ -306,12 +325,41 @@ TTX
 
 ````
 
-| Type | Name | Description |
-|:--|:--|:--|
-| UInt16 | substFormat | **Set to 1.** |
-| Offset16 | **coverageOffset** | Offset to Coverage table, from beginning of this table. |
-| UInt16 | **ligatureSetCount** | How many `LigatureSet` tables are in this `Lookup`. |
-| Offset16 | **ligatureSetOffsets[]** | Offsets to subtables. Starting from the beginning of this table. |
+| Type | Name | TTX part | Description |
+|:--|:--|:--|:--|
+| UInt16 | substFormat | LigatureSubst attr - Format | **Set to 1.** |
+| Offset16 | **coverageOffset** | n/a | Offset to Coverage table, from beginning of this table. |
+| UInt16 | **ligatureSetCount** | n/a | How many `LigatureSet` tables are in this `Lookup`. |
+| Offset16 | **ligatureSetOffsets[]** | n/a | Offsets to subtables. Starting from the beginning of this table. |
 
 
-There's more detail that I will have to go into later.
+#### LigatureSet table
+
+````
+TTX
+
+
+<LigatureSet glyph="u1f4aa">
+	<Ligature components="u1f3fb" glyph="u1f4aa-1f3fb"/>
+	<Ligature components="u1f3fc" glyph="u1f4aa-1f3fc"/>
+	<Ligature components="u1f3fd" glyph="u1f4aa-1f3fd"/>
+	<Ligature components="u1f3fe" glyph="u1f4aa-1f3fe"/>
+	<Ligature components="u1f3ff" glyph="u1f4aa-1f3ff"/>
+	<Ligature components="u101600" glyph="u1f4aa-101600"/>
+	... etc.
+	<Ligature components="u101650,u101600" glyph="u1f4aa-101650-101600"/>
+	<Ligature components="u101650,u101601" glyph="u1f4aa-101650-101601"/>
+	<Ligature components="u101650,u101602" glyph="u1f4aa-101650-101602"/>
+	... etc.
+</LigatureSet>
+... etc.
+
+````
+`LigatureSet`s contain the meat of Ligatures. They contain information that defines each ligature, and the glyph that is meant to substitute it.
+
+Each `LigatureSet` is a grouping of one or multiple ligatures. Ligatures are grouped by the first glyph in the sequence - this is defined by the `glyph` attribute in the tag.
+
+Within each `LigatureSet` is one or more `Ligature` tags, defining the actual ligatures:
+
+- attr `components` - a comma-separated list listing *the parts of the Ligature other than the first glyph, in order*.
+- attr `glyph` - the glyph name that this ligature corresponds to.

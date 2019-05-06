@@ -51,7 +51,7 @@ All of these values are in font design units.
 | UInt32 | **ulUnicodeRange3** | Continuation of the above. |
 | UInt32 | **ulUnicodeRange4** | Continuation of the above. |
 | Tag | **achVendID** | ID of [a typography vendor that's been registered with Microsoft](https://docs.microsoft.com/en-gb/typography/vendors/). |
-| UInt16 | fsSelection | Set all of the bytes to 0, it's irrelevant for emoji. This must agree with `macStyle` in the [header table](../header.md). Look at [Microsoft's spec](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#fsselection) for more information. |
+| UInt16 | fsSelection | Set all of the bytes to 0, it's irrelevant for emoji. This must agree with `macStyle` in the [header table](../head.md). Look at [Microsoft's spec](https://docs.microsoft.com/en-gb/typography/opentype/spec/os2#fsselection) for more information. |
 | UInt16 | **usFirstCharIndex** | The lowest Unicode character code in this font, according to a [`cmap`](../cmap.md) subtable that has [platform ID 3 and platform-specific encoding 0 or 1](../../data/platform-ids.md). |
 | UInt16 | **usLastCharIndex** | The highest Unicode character code in this font, according to the above criteria. |
 | Int16 | **sTypoAscender** | Similar to `ascender` in [`hhea`](horizontal_metrics.md) but not the same. |

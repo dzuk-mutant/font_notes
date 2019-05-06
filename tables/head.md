@@ -1,35 +1,8 @@
-# header
+# head
 
-- https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6head.html
-
-The header table contains basic, global information about the font.
-
-
-### Header types
-Depending on what the glyps are, the table to achieve this may be different, but both of these are byte-for-byte identical. The presence of them is merely a way of indicating what kind of glyphs are in the rest of the font.
-
-- If the font has outlines/contours, the `head` table should be used.
-- If the font has no outlines/contours, only bitmaps, the `bhed` table should be used.
-
-
-#### `head`
 - https://docs.microsoft.com/en-gb/typography/opentype/spec/head
 - https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6head.html
 
-#### `bhed`
-This is a TrueType header table that indicates that this font is wholly bitmap (ie. sbix). The font must have no `head` or `glyf` tables for this to be used.
-
-- https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6bhed.html
-
-It also requires `bdat` and `bloc` tables as dependencies:
-
-- https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6bdat.html
-- https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6bloc.html
-
-
-### Header information
-
-Either in `head` or `bhed`, it's the same:
 
 | Type     | Name    | Description |
 |:--------|:--------|:---------|
@@ -80,4 +53,3 @@ Either in `head` or `bhed`, it's the same:
 | 13 |  | **OpenType** | This font has been optimised for ClearType. It should always be 0 if the font relies on bitmaps. **We don't care about ClearType so set it to 0.** |
 | 14 | | all | "Last Resort font". This bit should be set if the glyphs in `cmap` are simply generic code point ranges and not actually indicative of all the glyps in the font. **Set it to 0.**
 | 15 | | all | Reserved. **Set to 0.** |
-

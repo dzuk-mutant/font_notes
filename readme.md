@@ -64,7 +64,7 @@ I still need to learn more about font metrics and make assumptions based on thos
 
 These tables often do the same thing as each other, just in slightly different ways, different contexts or different encoding systems, so they are all getting lumped together.
 
-- [main headers](tables/header.md) - **requires more writing**
+- [`head`](tables/head.md) - **requires more writing**
 - [`hhea` + `hmtx`](tables/horizontal_metrics.md): header and metrics for horizontal writing orientation
 - [`vhea` + `vmtx`](tables/vertical_metrics.md): header and metrics for vertical writing orientation
 - [`maxp`](tables/maxp.md) maximum profile: defines the memory requirements for the font.
@@ -75,8 +75,13 @@ These tables often do the same thing as each other, just in slightly different w
 
 ### 2. glyph and ligature mapping
 
+
+##### single glyphs
 - [`cmap`](tables/cmap.md) - **Still needs more writing and disambiguation. I'm not really done here!**
-- [`GSUB`](tables/gsub.md) - **in progress.** Unclear if this is only applicable to OpenType fonts or not.
+
+##### ligatures
+- [`GSUB`](tables/gsub.md) - OpenType ligatures.
+- `morx` - TrueType ligatures (might not be necessary if I can just make the sbix font OpenType without macOS/iOS complaining) (https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html)
 
 ### 3. glyph data
 
@@ -86,16 +91,37 @@ How they are encoded is the basis for what we consider the format of the font is
 
 Depending on the format, the visual information may be stored solely in one table (SVG, sbix), or two tables working together (CBDT/CBLC, COLR/CPAL).
 
-- [`SVG`](tables/svg.md): SVGinOT
-- [`sbix`](tables/sbix.md): Apple
-- [`CBx`](tables/cbx.md): CBDT/CBLC - Google
-- [`Cx`](tables/cx.md): COLR/CPAL - Will look into later if we see the point in doing it.
+#### [`SVG`](tables/svg.md): SVGinOT
+The most supported and the most ideal format.
+
+- Windows 10 (Creators Update)
+- macOS 10.14+ (unclear if this can be implemented system-wide or not)
+- iOS 12+?
+- Various Linux distros
+- Firefox 50+
+
+#### [`sbix`](tables/sbix.md): Apple
+The most supported colour bitmap format, primarily used by Apple.
+
+- macOS 10.7+
+- iOS 7+ (technically iOS 2.2+, but iOS 7 introduced Configuration Profiles which enable the installation of 3rd party fonts)
+- Windows 10 (Creators Update)
+
+#### [`CBx`](tables/cbx.md): CBDT/CBLC - Google
+Colour bitmap format, primarily used by Google.
+
+- Android 4.4+
+- Seems to be a thing in Chrome OS but how one would use different fonts in it is unknown to me.
+- Windows 10 (Creators Update)
+
+
+#### [Differences between bitmap table formats](misc/bitmap_table_differences.md)
+
 
 
 ### 4. [`name`](tables/name.md)
 
 Human-readable metadata.
-
 
 
 
@@ -105,6 +131,14 @@ Human-readable metadata.
 
 #### [Font Metrics](data/metrics.md)
 
+-----
+
+## Extra Compilation
+
+Creating a Configuration profile to install fonts on iOS
+
+- [Norbert Lindenberg - Installing Fonts on iOS](https://norbertlindenberg.com/2015/06/installing-fonts-on-ios/)
+- [Apple's Configuration Profile reference PDF](https://developer.apple.com/business/documentation/Configuration-Profile-Reference.pdf)
 
 -----
 
@@ -123,84 +157,9 @@ What I've found out while making fonts.
 - Refine metrics used. (There should be some descending, your use of vertical metrics is totally off)
 - I don't understand what PPEM is. (Used in `sbix` strikes)
 
------
-
-
-## Formats
-
-### SVGinOT (Mozilla, Adobe)
-
-The most supported and the most ideal format. Other formats have to be done for old OS support, however.
-
-- Windows 10 (Creators Update)
-- macOS 10.14+
-- iOS 12+?
-- Various Linux distros
-- Firefox 50+
-
-
-**OpenType - otf extension**
-
-```
-TABLES
-
-- head
-
-- hhea
-- hmtx
-- vhea
-- vmtx
-- maxp
-- OS/2
-
-- cmap
-- GSUB
-- SVG
-
-- name
-- post
-
-```
-
-### sbix (Apple)
-
-Stores glyphs as raster images rendered at multiple resolutions that's picked dynamically based on DPI and font size. These images can be a variety of formats (PNG, JPG, TIFF, etc.).
-
-- macOS 10.7+
-- iOS 2.2+
-
-**TrueType - ttf extension**
-
-
-```
-TABLES
-
-- bhed (assumed)
-- bdat (assumed)
-- bloc (assumed)
-
-- hhea
-- hmtx
-- vhea
-- vmtx
-- maxp
-- OS/2
-
-- cmap
-- sbix
-
-- name
-- post
-
-```
-
-
 
 ### CBx (CBDT/CBLC) (Google)
-Stores glyphs as PNGs at multiple resolutions.
 
-- Android 4.4+?
-- Chrome OS (what version?)
 
 **TrueType - ttf extension**
 
@@ -219,40 +178,9 @@ TABLES
 - OS/2
 
 - cmap
+- GSUB
 - CBDT
 - CBLC
-
-- name
-- post
-
-```
-
-
-### Cx (COLR/CPAL) (Microsoft)
-Stores glyphs as multiple layers of vector graphics (COLR) that are given colour palettes (CPAL).
-
-This is only useful for Windows 8. [Windows 10 has support for all of the above emoji formats.](https://docs.microsoft.com/en-gb/windows/desktop/DirectWrite/what-s-new-in-directwrite-for-windows-8-consumer-preview#what_s_new_for_windows_10_anniversary_update)
-
-**OpenType - otf extension**
-
-
-
-```
-TABLES
-
-- head
-
-- hhea
-- hmtx
-- vhea
-- vmtx
-- maxp
-- OS/2
-
-- cmap
-- GSUB
-- COLR
-- CPAL
 
 - name
 - post
