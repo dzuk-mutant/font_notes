@@ -73,7 +73,7 @@ The subtables then come after this.
 cmap subtables come in a number of formats.
 A bunch of them existed for use cases that are now obsolete.
 
-Each table is expected to have each of the [platform ID information sets](../data/platform-ids.md). The platform ID information here must match the information in the `name` table.
+Each table is expected to have each of the [platform ID information sets](../misc/platform_ids.md). The platform ID information here must match the information in the `name` table.
 
 Apple says you only really need:
 

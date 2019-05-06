@@ -114,7 +114,7 @@ Strikes consist of two parts:
 ### Strike Header
 |Type |	Name |	Description |
 |:--|:--|:--|
-| UInt16 | **ppem** | The PPEM size this strike was designed for. [Refer to this document](../data/metrics.md) to understand what PPEM is and how to use it. |
+| UInt16 | **ppem** | The PPEM size this strike was designed for. [Refer to this document](../misc/metrics.md) to understand what PPEM is and how to use it. |
 | UInt16 | **ppi** | The PPI this strike was designed for. |
 | Offset32 | **glyphDataOffsets[numGlyphs+1]** | Offset for the bitmap data for an individual glyph ID. Starts from the beginning of this strike header. |
 

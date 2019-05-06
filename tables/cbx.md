@@ -110,7 +110,7 @@ Each strike is defined by one of these tables.
 | UInt8 | flags | Either 1, 2, 4, 8 or 32. **In most circumstances it should be 32.** |
 
 1. SbitLineMetrics tables are described in the next section.
-2. [Refer to this document](../data/metrics.md) to understand what PPEM is and how to use it.
+2. [Refer to this document](../misc/metrics.md) to understand what PPEM is and how to use it.
 
 
 ### SbitLineMetrics

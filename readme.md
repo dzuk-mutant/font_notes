@@ -4,19 +4,20 @@
 
 In order to make [forc](https://github.com/mutantstandard/forc), an emoji creation tool, I've been creating my own documentation and notes to facilitate making that.
 
-The purpose of these documents is to:
+The purpose of this is to:
 
-1. Digest the specifications of TrueType and OpenType in a way that strips extraneous information that's not relevant to making an emoji font.
-2. Provide a guide for anyone else interested and provide justifications for the design decisions that the library this documentation was made to help will make.
+- Digest the specifications of TrueType and OpenType in a way that's easier to digest, and strip extraneous information that's not relevant to making an emoji font.
+- Create connections between various separate aspects of font making to streamline the understanding of making an emoji font.
+- Provide justifications to decisions made in forc, because there is so much information to digest when embarking on something like this.
+- Provide a guide for anyone else interested in font creation but finds the standard documentation a bit scary.
 
 
 ### Assumptions
 
-- This is going to assume that the relationships between characters/ligatures and emoji is 1:1 (which it basically is in Emoji)
-- This is going to assume that all the glyphs that will be produced in any font all have the same *square* metrics.
+- This is going to mostly assume that the relationships between characters/ligatures and emoji is 1:1 (which it basically is in Emoji)
+- This is going to assume that the font is monospaced.
 - These fonts should work flawlessly on their target operating systems without any complaints or compatibility issues (as long as those platforms support the emoji font format in question).
 - Fuck Silicon Valley, fuck capitalism.
-
 
 ### There may be inaccuracies at this stage
 
@@ -46,7 +47,7 @@ Luckily because we're just doing emoji, there's not too much we have to store, b
 
 ## Data
 
-### [sfnt wrapper](data/sfnt.md)
+### [sfnt wrapper](misc/sfnt.md)
 
 The data format, and the wrapper for all of the tables.
 
@@ -123,22 +124,15 @@ Colour bitmap format, primarily used by Google.
 
 Human-readable metadata.
 
+---
+
+## Recurring elements
+
+- [**Platform IDs**](misc/platform_ids.md)
+- [**Font Metrics**](misc/metrics.md)
+- [**Font Versioning**](misc/font_version.md)
 
 
-### Recurring elements
-
-#### [Platform IDs](data/platform-ids.md)
-
-#### [Font Metrics](data/metrics.md)
-
------
-
-## Extra Compilation
-
-Creating a Configuration profile to install fonts on iOS
-
-- [Norbert Lindenberg - Installing Fonts on iOS](https://norbertlindenberg.com/2015/06/installing-fonts-on-ios/)
-- [Apple's Configuration Profile reference PDF](https://developer.apple.com/business/documentation/Configuration-Profile-Reference.pdf)
 
 -----
 
@@ -148,6 +142,16 @@ What I've found out while making fonts.
 
 1. [macOS SVGinOT validation](practical/1_macos_svginot.md)
 2. [SVGinOT metrics problems](practical/2_svginot_problems.md)
+
+
+-----
+
+## iOS Configuration Profile
+
+Creating a Configuration profile to install fonts on iOS
+
+- [Norbert Lindenberg - Installing Fonts on iOS](https://norbertlindenberg.com/2015/06/installing-fonts-on-ios/)
+- [Apple's Configuration Profile reference PDF](https://developer.apple.com/business/documentation/Configuration-Profile-Reference.pdf)
 
 
 ---
