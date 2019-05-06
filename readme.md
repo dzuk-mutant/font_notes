@@ -84,15 +84,24 @@ These tables often do the same thing as each other, just in slightly different w
 - [`GSUB`](tables/gsub.md) - OpenType ligatures.
 - `morx` - TrueType ligatures (might not be necessary if I can just make the sbix font OpenType without macOS/iOS complaining) (https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6morx.html)
 
-### 3. glyph data
+### 3. placeholder tables
+
+There are various tables that are required in some form to please font rendering clients, even when they aren't actually doing anything.
+
+- `loca` - Index to Location (macOS would rather this be here, even if it's empty)
+- `gasp` - Grid-fitting and Scan-conversion Procedure Table (Google Fonts recommends at least a basic table for this)
+- `DSIG` - digital signature table (Google Fonts recommends at least a basic table for this, even if it doesnt actually have any signatures)
+
+
+### 4. glyph data
 
 This is where the meat of the font is. This is where the graphical information is stored.
 
 How they are encoded is the basis for what we consider the format of the font is - so a font with sbix glyph tables is an sbix format font, a font with SVG glyph tables is an SVGinOT font, and so on.
 
-Depending on the format, the visual information may be stored solely in one table (SVG, sbix), or two tables working together (CBDT/CBLC, COLR/CPAL).
+Depending on the format, the visual information may be stored solely in one table (`SVG`, `sbix`), or two tables working together (`CBDT/CBLC`, `COLR/CPAL`).
 
-#### [`SVG`](tables/svg.md): SVGinOT
+#### [`SVG`](tables/svg.md) (SVGinOT)
 The most supported and the most ideal format.
 
 - Windows 10 (Creators Update)
@@ -101,26 +110,30 @@ The most supported and the most ideal format.
 - Various Linux distros
 - Firefox 50+
 
-#### [`sbix`](tables/sbix.md): Apple
+#### [`sbix`](tables/sbix.md) (Apple)
 The most supported colour bitmap format, primarily used by Apple.
 
 - macOS 10.7+
 - iOS 7+ (technically iOS 2.2+, but iOS 7 introduced Configuration Profiles which enable the installation of 3rd party fonts)
 - Windows 10 (Creators Update)
 
-#### [`CBx`](tables/cbx.md): CBDT/CBLC - Google
+#### [`CBDT/CBLC`](tables/cbx.md) (Google)
 Colour bitmap format, primarily used by Google.
 
 - Android 4.4+
 - Seems to be a thing in Chrome OS but how one would use different fonts in it is unknown to me.
 - Windows 10 (Creators Update)
 
+#### [`COLR/CPAL`](tables/cx.md)
+Vector graphics format, primarily used by Microsoft for their emoji font.
+
+It's unclear if this guide will actually look into this format right now.
 
 #### [Differences between bitmap table formats](misc/bitmap_table_differences.md)
 
 
 
-### 4. [`name`](tables/name.md)
+### 5. [`name`](tables/name.md)
 
 Human-readable metadata.
 
@@ -131,6 +144,7 @@ Human-readable metadata.
 - [**Platform IDs**](misc/platform_ids.md)
 - [**Font Metrics**](misc/metrics.md)
 - [**Font Versioning**](misc/font_version.md)
+- [**Mandatory/Conventional Glyphs**](misc/glyphs.md)
 
 
 

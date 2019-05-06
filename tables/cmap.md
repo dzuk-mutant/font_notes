@@ -5,9 +5,7 @@
 
 `cmap` maps glyphs (the actual emoji pictures) to character codes (the characters people type).
 
-The assumptions of this software is that there is a 1:1 mapping between characters/ligatures and glyphs.
-
-
+cmap only deals with single glyphs. mixing glyphs to form ligatures is dealt with by other tables.
 
 ```
 TTX
@@ -75,21 +73,30 @@ A bunch of them existed for use cases that are now obsolete.
 
 Each table is expected to have each of the [platform ID information sets](../misc/platform_ids.md). The platform ID information here must match the information in the `name` table.
 
-Apple says you only really need:
+Here are the useful ones:
 
-- 4
-- 6
-- 12
+- **0** (1-byte codepoints ceiling: U+00 - U+FF)
+- **4**	(2-byte codepoints ceiling: U+00 - U+FFFF)
+- **12** (4-byte codepoints ceiling: U+00 - U+10FFFF*)
+- **14** (To indicate varition selectors)
 
-We probably only need:
+(*The Unicode Standard only goes up to U+10FFFF at the time of writing)
 
-- 12 (because Windows needs it for high-number Unicode characters (U+10000 - U+10FFFF))
-- 14 (to indicate what variation selectors we're using)
+As this list suggests, subtables 0, 4 and 12 will probably contain some of the same codepoints. That's fine, you should repeat the codepoints that fit into each subtable's possible codepoint range.
+
+If the range of glyphs in your font don't go high enough for one of the higher subtables, don't build that subtable. (ie. if you don't have any codepoints higher than U+FFFF, don't build cmap subtables for format 12 at all.)
 
 ----
 
-## Subtable Format 12 (Segmented coverage)
-On Windows, this is required for really high number characters, including SPUA characters (U+10000 - U+10FFFF).
+## Subtable Format 0
+This covers one-byte unicode codepoints - U+00 - U+FF.
+
+## Subtable Format 4
+This covers two-byte unicode codepoints - U+00 - U+FF.
+
+
+## Subtable Format 12 ('Segmented coverage')
+This is required for really high number codepoints (four-byte), including SPUA codepoints (U+10000 - U+10FFFF) - U+00 - U+FF.
 
 
 ###### The head
@@ -117,14 +124,13 @@ On Windows, this is required for really high number characters, including SPUA c
 
 ## Subtable Format 14 (Variation Sequences)
 
+This tells the client what Unicode Variation Sequences this font supports.
 
-This tells the computer what Unicode Variation Sequences this font supports.
-
-A Unicode Variation Sequence (UVS) is a base character followed by a variation selector. (ie. `U+200D, U+FE0F`).
+A Unicode Variation Sequence (UVS) is a base character followed by a variation selector. (ie. `U+FE0F`).
 
 Because this is a table about other characters, this is the only subtable that cannot be on it's own.
 
-We only need to do this for U+FE0F and any character that gets combined with it.
+Because this guide is about emoji,`U+FE0F` is the only relevant variation sequence.
 
 ```
 TTX
@@ -155,27 +161,4 @@ TTX
 | Offset32  | nonDefaultUVSOffset | Glyph index corresponding to `startCharCode`. Subsequent characters are mapped to subsequent glyphs sequentially. |
 
 [There's a bunch more data points here that speaks for themselves, really.](https://docs.microsoft.com/en-gb/typography/opentype/spec/cmap#format-14-unicode-variation-sequences)
-
----
-
-## Mandatory/Conventional Glyphs
-
-You should always encode these at the beginning of every `cmap` subtable.
-
-- https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=IWS-Chapter08
-
-````
-TTX
-
-<cmap_format_12 platformID="0" platEncID="10" language="0" format="12" reserved="0" length="?"  nGroups="?">
-		<map code="0x0" name=".notdef"/><!-- .notdef -->
-		<map code="0xd" name="CR"/><!-- Carriage Return -->
-		<map code="0x20" name="space"/><!-- Space -->
-		....
-````
-| Glyph ID    | Codepoint     | Desc      |
-|:--------|:---------|:----------|
-| 0 | 0x0   | .notdef / null |
-| 2 | 0xd   | Carriage Return |
-| 3 | 0x20   | Space |
 

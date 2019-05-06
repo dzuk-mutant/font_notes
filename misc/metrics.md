@@ -115,8 +115,8 @@ It seems like it's best to set the descender to your `yMin` and your ascender to
 
 #### usWin ascenders and descenders
 
-- [`OS/2.usWinAscent`](../tables/os_2.md) (Windows ascender)
-- [`OS/2.usWinDescent`](../tables/os_2.md) (Windows ascender)
+- [`OS/2.usWinAscent`](../tables/os_2.md) (Microsoft-specific ascender)
+- [`OS/2.usWinDescent`](../tables/os_2.md) (Microsoft-specific ascender)
 
 These basically tell Windows where to vertically crop the bitmap rendering of the glyphs according to where the ascenders and descenders are. If any cropping is unacceptable, set them to greater than or equal to yMax for `usWinAscender` and (-yMin) for `usWinDescender`. It seems like you should definitely do that.
 
@@ -231,3 +231,4 @@ These are things you'll have to decide for yourself based on what you think look
 
 `lowestRecPPEM` is the lowest recommended size for the font, in pixels. For Mutant Standard, that would be 16 or 18px.
 
+Microsoft
