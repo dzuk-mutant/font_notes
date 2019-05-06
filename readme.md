@@ -2,7 +2,7 @@
 
 ### Purpose
 
-Orxporter needs a font encoding library, so I'm creating my own documentation and notes to facilitate making that.
+In order to make [forc](https://github.com/mutantstandard/forc), an emoji creation tool, I've been creating my own documentation and notes to facilitate making that.
 
 The purpose of these documents is to:
 
@@ -64,14 +64,14 @@ I still need to learn more about font metrics and make assumptions based on thos
 
 These tables often do the same thing as each other, just in slightly different ways, different contexts or different encoding systems, so they are all getting lumped together.
 
-- [`head`](tables/head.md) - **requires more writing**
+- [`head`](tables/head.md)
 - [`hhea` + `hmtx`](tables/horizontal_metrics.md): header and metrics for horizontal writing orientation
 - [`vhea` + `vmtx`](tables/vertical_metrics.md): header and metrics for vertical writing orientation
 - [`maxp`](tables/maxp.md) maximum profile: defines the memory requirements for the font.
 - [`OS/2`](tables/os_2.md) - Windows and OpenType-specific metadata and metrics.
 - [`post`](tables/post.md) - Information for PostScript printers.
 
-`vhea` and `vmtx` aren't *technically* required, but it would be kind of ignorant and Anglocentric of us not to do them.
+`vhea` and `vmtx` aren't *technically* required, but it would be kind of ignorant and western-centric to not at least give it a basic shake.
 
 ### 2. glyph and ligature mapping
 
@@ -155,34 +155,3 @@ What I've found out while making fonts.
 ## Todo
 
 - Refine metrics used. (There should be some descending, your use of vertical metrics is totally off)
-- I don't understand what PPEM is. (Used in `sbix` strikes)
-
-
-### CBx (CBDT/CBLC) (Google)
-
-
-**TrueType - ttf extension**
-
-```
-TABLES
-
-- bhed (assumed)
-- bdat (assumed)
-- bloc (assumed)
-
-- hhea
-- hmtx
-- vhea
-- vmtx
-- maxp
-- OS/2
-
-- cmap
-- GSUB
-- CBDT
-- CBLC
-
-- name
-- post
-
-```

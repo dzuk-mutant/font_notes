@@ -155,7 +155,7 @@ TTX
  
 
 |Type | Name | Rec. Value | Description |
-|:--|:--|:--|
+|:--|:--|--:|:--|
 | Int8 | **ascender** | | |
 | Int8 | **descender** | | |
 | UInt8 | **widthMax** | | |

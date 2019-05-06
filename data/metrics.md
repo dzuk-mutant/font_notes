@@ -66,9 +66,8 @@ PPI is a standard measure of pixel density in displays. PPI is used by `sbix` to
 Treat PPEM as if it was on a 72 PPI device and treat PPEM as square.
 
 - Set `sbix.<strike>.ppi` to 72 for all strikes.
-- Set your PPEMs the same as their standard resolution for all axes. If the size of images in a strike is 128px, the PPEM is 128. If it's 64px then the PPEM is 64, and so on.
-
-**I think that's how PPEM should be set????**
+- Set `sbix.<strike>.ppem` to the size of the image files themselves. If the size of images in a strike is 128px, the PPEM is 128. If it's 64px then the PPEM is 64, and so on.
+- Set your `CBLC.<BitmapSize>.ppemX` and `ppemY` to the same as sbix's PPEMs???? **I think????**
 
 
 
@@ -78,10 +77,10 @@ Treat PPEM as if it was on a 72 PPI device and treat PPEM as square.
 
 ## Bounding Boxes
 
-- `xMin` in [`head`/`bhed`](../tables/head.md)
-- `yMin` in [`head`/`bhed`](../tables/head.md)
-- `xMax` in [`head`/`bhed`](../tables/head.md)
-- `yMax` in [`head`/`bhed`](../tables/head.md)
+- [`head.xMin`](../tables/head.md)
+- [`head.yMin`](../tables/head.md)
+- [`head.xMax`](../tables/head.md)
+- [`head.yMax`](../tables/head.md)
 
 A bounding box that is set around all glyphs in the font. In a normal font situation, this is calculated by looking at all contour/outline data for the glyphs.
 
@@ -102,12 +101,12 @@ In any case, ours will be representing a square.
 
 #### Basic ascenders and descenders
 
-- `ascender` (Apple ascender) in [`hhea`](../tables/horizontal_metrics.md).
-- `descender` (Apple descender) in [`hhea`](../tables/horizontal_metrics.md).
-- `vertTypoAscender` in [`vhea`](../tables/vertical_metrics.md).
-- `vertTypoDescender` in [`vhea`](../tables/vertical_metrics.md).
-- `sTypoAscender ` (OS/2 ascender) in [`OS/2`](../tables/os_2.md).
-- `sTypoDescender ` (OS/2 descender) in [`OS/2`](../tables/os_2.md).
+- [`hhea.ascender`](../tables/horizontal_metrics.md) (Apple-specific ascender)
+- [`hhea.descender`](../tables/horizontal_metrics.md) (Apple-specific descender)
+- [`vhea.vertTypoAscender`](../tables/vertical_metrics.md)
+- [`vhea.vertTypoDescender`](../tables/vertical_metrics.md)
+- [`OS/2.sTypoAscender`](../tables/os_2.md) (Microsoft-specific ascender)
+- [`OS/2.sTypoDescender`](../tables/os_2.md) (Microsoft-specific descender)
 
 These are what they are. If you're doing CJK characters (or like emoji presumably), then you will possibly want to define these in terms of the ['ideographic em-box'](https://docs.microsoft.com/en-gb/typography/opentype/spec/baselinetags#ideoembox) to ensure clean vertical rendering.
 
@@ -116,8 +115,8 @@ It seems like it's best to set the descender to your `yMin` and your ascender to
 
 #### usWin ascenders and descenders
 
-- `usWinAscent ` (Windows ascender) in [`OS/2`](../tables/os_2.md).
-- `usWinDescent ` (Windows descender) in [`OS/2`](../tables/os_2.md).
+- [`OS/2.usWinAscent`](../tables/os_2.md) (Windows ascender)
+- [`OS/2.usWinDescent`](../tables/os_2.md) (Windows ascender)
 
 These basically tell Windows where to vertically crop the bitmap rendering of the glyphs according to where the ascenders and descenders are. If any cropping is unacceptable, set them to greater than or equal to yMax for `usWinAscender` and (-yMin) for `usWinDescender`. It seems like you should definitely do that.
 
@@ -126,8 +125,8 @@ These basically tell Windows where to vertically crop the bitmap rendering of th
 
 #### Caps height and x-height
 
-- `sxHeight ` in [`OS/2`](../tables/os_2.md)
-- `sCapHeight ` in [`OS/2`](../tables/os_2.md)
+- [`OS/2.sxHeight`](../tables/os_2.md)
+- [`OS/2.sCapHeight`](../tables/os_2.md)
 
 It seems like you should try setting `sxHeight` to the same as `yMin` and `sCapHeight` to the same as `sCapHeight`.
 
@@ -139,46 +138,29 @@ It seems like you should try setting `sxHeight` to the same as `yMin` and `sCapH
 
 ###### Horizontal
 
-[`hhea`](../tables/horizontal_metrics.md)
-
-- `advanceWidthMax`
-- `minLeftSideBearing`
-- `maxRightSideBearing`
-- `xMaxExtent`
-
-[`hmtx`](../tables/horizontal_metrics.md)
-
-- `leftSideBearings[]`
-- `advanceWidth`
-- `lsb`
-
-[`CBDT`](../tables/CBx.md)
-
-- `horiBearingX`
-- `horiBearingY`
-- `horiAdvance`
+- [`hhea.advanceWidthMax`](../tables/horizontal_metrics.md)
+- [`hhea.minLeftSideBearing`](../tables/horizontal_metrics.md)
+- [`hhea.maxRightSideBearing`](../tables/horizontal_metrics.md)
+- [`hhea.xMaxExtent`](../tables/horizontal_metrics.md)
+- [`hmtx.leftSideBearings[]`](../tables/horizontal_metrics.md)
+- [`hmtx.advanceWidth`](../tables/horizontal_metrics.md)
+- [`hmtx.lsb`](../tables/horizontal_metrics.md)
+- [`CBDT.horiBearingX`](../tables/CBx.md)
+- [`CBDT.horiBearingY`](../tables/CBx.md)
+- [`CBDT.horiAdvance`](../tables/CBx.md)
 
 ###### Vertical
 
-[`vhea`](../tables/vertical_metrics.md)
-
-- `advanceHeightMax`
-- `minTopSideBearing`
-- `maxBottomSideBearing`
-- `yMaxExtent`
-
-[`vmtx`](../tables/vertical_metrics.md)
-
-- `topSideBearing[]`
-- `advanceHeight`
-- `topSideBearing`
-
-
-[`CBDT`](../tables/CBx.md)
-
-- `vertBearingX`
-- `vertBearingY`
-- `vertAdvance`
+- [`vhea.advanceHeightMax`](../tables/vertical_metrics.md)
+- [`vhea.minTopSideBearing`](../tables/vertical_metrics.md)
+- [`vhea.maxBottomSideBearing`](../tables/vertical_metrics.md)
+- [`vhea.yMaxExtent`](../tables/vertical_metrics.md)
+- [`vmtx.topSideBearing[]`](../tables/vertical_metrics.md)
+- [`vmtx.advanceHeight`](../tables/vertical_metrics.md)
+- [`vmtx.topSideBearing`](../tables/vertical_metrics.md)
+- [`CBDT.vertBearingX`](../tables/CBx.md)
+- [`CBDT.vertBearingY`](../tables/CBx.md)
+- [`CBDT.vertAdvance`](../tables/CBx.md)
 
 ###### links
 
@@ -206,10 +188,10 @@ It seems like for monospaced fonts, these should just be the width that you've d
 ## Carets
 
 ##### Relevant data points:
-- `caretSlopeRise` in [`hhea`](../tables/horizontal_metrics.md).
-- `caretSlopeRun` in [`hhea`](../tables/horizontal_metrics.md).
-- `caretSlopeRise` in [`vhea`](../tables/vertical_metrics.md).
-- `caretSlopeRun` in [`vhea`](../tables/vertical_metrics.md).
+- [`hhea.caretSlopeRise`](../tables/horizontal_metrics.md)
+- [`hhea.caretSlopeRun`](../tables/horizontal_metrics.md)
+- [`hhea.caretSlopeRise`](../tables/vertical_metrics.md)
+- [`hhea.caretSlopeRun`](../tables/vertical_metrics.md)
 
 I'm not sure what this is but for our purposes, I think it's just fine to set Rise to 1 and Run to 0.
 
@@ -218,9 +200,9 @@ I'm not sure what this is but for our purposes, I think it's just fine to set Ri
 
 ## Line gap
 
-- `lineGap` (Apple line gap) in [`hhea`](../tables/horizontal_metrics.md).
-- `vertTypoLineGap ` in [`vhea`](../tables/vertical_metrics.md).
-- `sTypoLineGap ` (OS/2 line gap) in [`OS/2`](../tables/os_2.md).
+- [`hhea.lineGap`](../tables/horizontal_metrics.md) (Apple-specific line gap)
+- [`vhea.vertTypoLineGap`](../tables/vertical_metrics.md)
+- [`OS/2.sTypoLineGap`](../tables/os_2.md) (OS/2-specific line gap)
 
 It seems like you should/could just set these to 0 for emoji.
 
@@ -237,27 +219,13 @@ These are things you'll have to decide for yourself based on what you think look
 
 `underlineThickness` and `yStrikeoutSize` should match each other.
 
----
-
-## Display Density
-
-#####`sbix` strike header
-
-- ppem
-- ppi
-
-##### CBLC strikes
-
-- `ppemX`
-- `ppemY`
-
 
 ---
 
 ## Other
 
-- `xAvgCharWidth` in [`OS/2`](../tables/os_2.md)
-- `lowestRecPPEM` in [`head`/`bhed`](../tables/head.md)
+- [`OS/2.xAvgCharWidth`](../tables/os_2.md)
+- [`head.lowestRecPPEM`](../tables/head.md)
 
 `xAvgCharWidth` is the arithmetic average width of all non-zero width glyph in the font in FUnits. This is a monospaced font, so it's just the same width as all the other widths.
 
