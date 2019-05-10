@@ -302,6 +302,7 @@ TTX
 ```
 
 TTX (format 18)
+(TTX can't actually compile this format so this is completely hypothetical)
 
 <cbdt_bitmap_format_18 name="glyph name">
 		
@@ -335,6 +336,7 @@ TTX (format 18)
 
 ```
 TTX (format 19)
+(TTX can't actually compile this format so this is completely hypothetical)
 
 <cbdt_bitmap_format_19 name="glyph name">
 		
