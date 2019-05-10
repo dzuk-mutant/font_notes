@@ -46,13 +46,7 @@ It's important to notice that all of the metrics for CBDT/CBLC tables are either
 				[... vert metrics ...]
 			</sbitLineMetrics>
 			
-			<colorRef value="0"/> <!--disused-->
-			<startGlyphIndex value=""/>
-			<endGlyphIndex value=""/>
-			<ppemX value=""/>
-			<ppemY value=""/>
-			<bitDepth value=""/>
-			<flags value=""/>
+			...
 			
 		</bitmapSizeTable>
 			
@@ -83,16 +77,57 @@ It's important to notice that all of the metrics for CBDT/CBLC tables are either
 
  The first and only CBLC version (at the time of writing) is 3.0.
 
-|Type | Name | Rec. Value | Description |
+|Type | Name | Description |
 |:--|:--|:--|
-| Int8 | **majorVersion** | 3 | |
-| Int8 | **minorVersion** | 0 | |
-| UInt8 | **numSizes** | | Number of 
+| Int8 | **majorVersion** | **Set to 3.** |
+| Int8 | **minorVersion** | **Set to 0.** |
+| UInt8 | **numSizes** | Number of BitmapSize tables. |
 
 
 ### BitmapSize Table
 
 Each strike is defined by one of these tables.
+
+```
+
+TTX
+
+<strike index="0">
+	<bitmapSizeTable>
+		  
+		<sbitLineMetrics direction="hori">
+			[... hori metrics ...]
+		</sbitLineMetrics>
+		    
+		<sbitLineMetrics direction="vert">
+			[... vert metrics ...]
+		</sbitLineMetrics>
+		
+		...
+		
+	</bitmapSizeTable>
+	
+	
+		
+	<eblc_index_sub_table_1 imageFormat="17" firstGlyphIndex="" lastGlyphIndex="">
+		<glyphLoc id="" name=""/>
+		
+		...
+		[more glyphLocs...]
+		...
+		
+	</eblc_index_sub_table_1>
+	
+	
+	...
+	[... more EBLC/CBLC subtables ...]
+	...
+		
+</strike>
+
+```
+
+
 
 |Type | Name | Description |
 |:--|:--|:--|
@@ -107,7 +142,7 @@ Each strike is defined by one of these tables.
 | UInt8 | **ppemX** | horizontal PPEM. [2] |
 | UInt8 | **ppemY** | vertical PPEM. [2] |
 | UInt8 | bitDepth | Either 1, 2, 4, 8 or 32. **In most circumstances it should be 32.** |
-| UInt8 | flags | Either 1, 2, 4, 8 or 32. **In most circumstances it should be 32.** |
+| UInt8 | flags | ??? |
 
 1. SbitLineMetrics tables are described in the next section.
 2. [Refer to this document](../misc/metrics.md) to understand what PPEM is and how to use it.
@@ -172,6 +207,11 @@ TTX
 1. These are for scalers that might need more metric information to position glyphs or pre-allocate memory. They are available to clients that want to parse the EBLC table, but the rasteriser doesn't directly use these.  These don't seem particularly useful, especially in a modern context and Google's emoji font sets them to 0.
 
 
+### Strike Subtables
+
+This is where the glyphs in the strike are defined.
+
+----
 
 ## CBDT
 
@@ -185,27 +225,12 @@ TTX
 <CBDT>
 	<header version="3.0"/>
 	<strikedata index="0">
-		<cbdt_bitmap_format_17 name="glyph name">
-		
-			<BigGlyphMetrics>
-				<height value="?"/>
-				<width value="?"/>
-				<horiBearingX value="?"/>
-				<horiBearingY value="?"/>
-				<horiAdvance value="?"/>
-				<horiBearingX value="?"/>
-				<horiBearingY value="?"/>
-				<horiAdvance value="?"/>
-			</BigGlyphMetrics>
-			
-			<rawimagedata>
-				[PMG image data]
-			</rawimagedata>
-			
+		<cbdt_bitmap_format_17 name="u101690">
+			...			
 		</cbdt_bitmap_format_17>
 		
 		...
-		[...more cbdt_bitmap_format...]
+		[...more cbdt_bitmaps...]
 		...
 		
 	</strikedata>
@@ -225,31 +250,121 @@ The first and only version of CBDT is 3.0.
 | UInt16 | majorVersion | **Set to 3.** |
 | UInt16 | minorVersion | **Set to 0.** |
 
-### The rest
 
-This can be in 3 possible formats, which one it is is defined by information given in the CBLC table.
+### CBDT Bitmap
+
+Each bitmap is defined in a subtable within each strike.
+
+Each bitmap declaration has it's own subtable type and metrics alongside raw image data.
+
+Subtable formats:
+
+- 17: PNG, SmallGlyphMetrics
+- 18: PNG, BigGlyphMetrics
+- 19: PNG, metrics already declared in CBLC table. **(probably the one I want)**
+
+You can also use subtable formats in the EBLC standard, but none of them are applicable for color emoji making here.
 
 
-#### Bitmaps
+#### format 17
 
-Images for each individual glyph is pure PNG data. 
+```
 
-Only the following chunks are allowed in the PNG - IHDR, PLTE, tRNS, sRGB, IDAT, and IEND. The others will be considered undefined.
+TTX
 
-The image data is presented in sRGB, regardless of what other chunks of the PNG might say.
+<cbdt_bitmap_format_17 name="glyph name">
+		
+	<BigGlyphMetrics>
+		<height value="?"/>
+		<width value="?"/>
+		<BearingX value="?"/>
+		<BearingY value="?"/>
+		<Advance value="?"/>
+	</BigGlyphMetrics>
+	
+	<rawimagedata>
+		[image data as Base64 hexdump]
+	</rawimagedata>
+	
+	
+</cbdt_bitmap_format_17>
 
-The images must have the same size as expected 
+```
+
+|Type | Name |	Description |
+|:--|:--|:--|
+| smallGlyphMetrics | glyphMetrics | |
+| UInt32 | dataLen | Length of the PNG data in bytes |
+| UInt18 | data[dataLen] | PNG data |
+
+#### format 18
+
+```
+
+TTX (format 18)
+
+<cbdt_bitmap_format_18 name="glyph name">
+		
+	<BigGlyphMetrics>
+		<height value="?"/>
+		<width value="?"/>
+		<horiBearingX value="?"/>
+		<horiBearingY value="?"/>
+		<horiAdvance value="?"/>
+		<horiBearingX value="?"/>
+		<horiBearingY value="?"/>
+		<horiAdvance value="?"/>
+	</BigGlyphMetrics>
+	
+	<rawimagedata>
+		[image data as Base64 hexdump]
+	</rawimagedata>
+	
+	
+</cbdt_bitmap_format_18>
+
+```
+|Type | Name |	Description |
+|:--|:--|:--|
+| bigGlyphMetrics | glyphMetrics | |
+| UInt32 | dataLen | Length of the PNG data in bytes |
+| UInt18 | data[dataLen] | PNG data |
 
 
-#### Metrics
+#### format 19
+
+```
+TTX (format 19)
+
+<cbdt_bitmap_format_19 name="glyph name">
+		
+	<rawimagedata>
+		[image data as Base64 hexdump]
+	</rawimagedata>
+	
+</cbdt_bitmap_format_17>
+
+```
+
+|Type | Name |	Description |
+|:--|:--|:--|
+| UInt32 | dataLen | Length of the PNG data in bytes |
+| UInt18 | data[dataLen] | PNG data |
+
 
 Metrics are defined by two different formats. We are only using `BigGlyphMetrics` because the other does not support vertical writing orientation (and we shouldn't consider that optional).
 
 A lot of this mirrors what you'd find in the vertical and horizontal headers and metrics tables.
 
+---
+
+## Recurring things
+
+#### Metrics
+
 ##### BigGlyphMetrics
 
-|Type |	Name |	Description |
+|Type | Name |	Description |
 |:--|:--|:--|
 | UInt8 | height | |
 | UInt8 | width | |
@@ -260,5 +375,25 @@ A lot of this mirrors what you'd find in the vertical and horizontal headers and
 | Int8 | vertBearingY | |
 | UInt8 | vertAdvance | |
 
+##### SmallGlyphMetrics
+
+|Type | Name |	Description |
+|:--|:--|:--|
+| UInt8 | height | |
+| UInt8 | width | |
+| Int8 | BearingX | |
+| Int8 | BearingY | |
+| UInt8 | Advance | |
 
 [more information needed]
+
+
+#### Bitmaps
+
+Images for each individual glyph is pure PNG data. 
+
+Only the following chunks are allowed in the PNG - IHDR, PLTE, tRNS, sRGB, IDAT, and IEND. The others will be considered undefined.
+
+The image data is presented in sRGB, regardless of what other chunks of the PNG might say.
+
+The image size must agree with the metrics information that's been given about it.
